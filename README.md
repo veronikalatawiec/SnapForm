@@ -126,11 +126,11 @@ There is currently no plan to link Snap Form to an external API.
 
 ### Mockups
 
-![low-fi-wireframes](https://github.com/user-attachments/assets/8b7476b5-d069-4d2b-a59b-81afa1c9e1cb)
+![low-fi-wireframes](https://github.com/user-attachments/assets/e8a61870-4e4d-48bb-8ac7-11a77bb9085f)
 
 ### Data
 
-![sql-diagram](https://github.com/user-attachments/assets/ba83d385-d88f-45fc-817e-cfadec5e1477)
+![sql-diagram](https://github.com/user-attachments/assets/77a4400f-0591-42b1-a954-e3a7e63b702d)
 
 ### Endpoints
 
@@ -237,63 +237,74 @@ There is currently no plan to link Snap Form to an external API.
     -   Initialize the backend with Express and Node.js.
     -   Set up MySQL database and create essential tables (Users, Forms, Fields, Responses).
     -   Install and configure key libraries (React-Router, Axios, Knex.js, bcrypt.js, CORS).
-    -   Set up Vite.
+    -   Set up Vite for faster development.
+    -   Basic routing setup for the app (landing page, login page).
+    -   
 2.  **(March 12) User Authentication: Register & Login**
     
     -   Implement user registration (POST /users/register).
     -   Implement user login (POST /users/login).
     -   Store JWT in localStorage for persistent authentication.
-    -   Set up Reactjs-social-login for OAuth login options (optional).
-3.  **(March 13) User Authentication: Middleware & Authorization**
-    
-    -   Implement JWT authentication middleware for protected routes.
-    -   Protect form creation and form view routes.
-    -   Implement basic error handling for invalid JWT and unauthorized access.
-4.  **(March 14) Form Creation & Field Management**
+    -   Test basic user authentication flow (register, login, and JWT).
+    -   
+3.  **(March 13) Form Creation: POST API & Backend Setup**
     
     -   Implement POST /forms endpoint to create forms.
-    -   Set up form builder using Pragmatic Drag-and-Drop for adding fields (text, radio, checkbox).
-    -   Integrate SurveyJS for dynamic form creation and management.
-    -   Connect form data with the backend and store it in MySQL.
-5.  **(March 15) Form View & Editing**
+    -   Set up basic form structure in the database (Fields table, relate it to the Forms table).
+    -   Implement basic field types (text, radio, checkbox).
+    -   Test form creation API (ensure the form is saved to MySQL).
+
+4.  **(March 14) Form Builder UI Setup**
     
-    -   Implement GET /forms/:id endpoint to view form details.
-    -   Enable form editing to modify fields and layout.
-    -   Test form creation and editing functionality.
+    -   Set up form builder UI using Pragmatic Drag-and-Drop.
+    -   Create basic form fields (text, radio, checkbox).
+    -   Integrate SurveyJS(?) for dynamic form creation (begin with adding form fields).
+    -   Connect form builder UI with the backend to send data (store fields in MySQL).
+    -   Basic form layout with draggable elements for fields.
 
-**Weekend Work (March 16)**
+**Weekend Work (March 15 & 16)**
 
--   Light review and troubleshooting.
--   Begin testing.
--   Finish anything that is incomplete from week.
+-   Implement GET /forms/:id endpoint to view form details.
+-   Enable form editing functionality to modify fields and layout.
+-   Set up UI for displaying created forms and editing them.
+-   Test form creation, editing, and saving.
+-   Review and troubleshoot.
+-   Finish any incomplete tasks from the week.
 
 ----------
 
 **Week 2 (March 17 - March 23)**
 
-6.  **(March 17) Form Sharing & Links**
+6.  **(March 17) Form Authentication & User Access**
+    
+    -   Implement JWT authentication middleware to protect form routes.
+    -   Ensure users can only access and edit their own forms (authorization checks).
+    -   Test authorization flow (logged-in user access to their forms).
+  
+7.  **(March 18) Form Sharing & Links**
     
     -   Implement POST /forms/:formId/share to generate shareable links for forms.
-    -   Allow users to share forms via social media or direct links.
-    -   Add UI for managing form sharing options.
-7.  **(March 18) Form Customization**
+    -   Add UI for managing form sharing options (copy link, social media sharing).
+    -   Test the form sharing functionality (ensure links work and are user-friendly).
+  
+8.  **(March 19) Form Customization**
     
-    -   Implement form customization options (color, font, branding).
+    -   Implement basic form customization options (color, font).
     -   Use React-colorful for color picker functionality.
-    -   Allow users to save and apply customizations easily.
-8.  **(March 19) Form Analytics**
-    
-    -   Implement GET /forms/:formId/analytics endpoint to retrieve form response data.
-    -   Display visual analytics using mui/x-charts (pie charts, bar graphs).
-    -   Test analytics for correct data representation.
+    -   Allow users to save and apply customizations (colors, fonts) to their forms.
+    -   Test customization functionality.
+
 9.  **(March 20) Form Privacy & Management**
     
     -   Implement POST /forms/:formId/take-down to take down or privatize forms.
     -   Enable form management options in the user dashboard (view, edit, delete forms).
     -   Ensure forms can be marked as private to stop receiving responses.
-10.  **(March 21) Final Testing & Debugging**
+  
+10.  **(March 21) Privacy + Final Testing & Debugging**
     
-
+-   Implement GET /forms/:id/responses endpoint to retrieve form responses.
+-   Display basic visual analytics
+-   Test analytics to ensure correct representation of form responses.
 -   Finish anything that is incomplete from week.
 -   Perform thorough testing of all features (form creation, sharing, analytics, customization).
 -   Fix bugs and issues discovered during testing.
