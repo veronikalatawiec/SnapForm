@@ -130,7 +130,8 @@ There is currently no plan to link Snap Form to an external API.
 
 ### Data
 
-![sql-diagram](https://github.com/user-attachments/assets/77a4400f-0591-42b1-a954-e3a7e63b702d)
+<img width="1321" alt="sql-diagram" src="https://github.com/user-attachments/assets/171b09b0-9227-4e0a-b86c-a7df7e2e009c" />
+
 
 ### Endpoints
 
