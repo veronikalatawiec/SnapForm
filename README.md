@@ -95,7 +95,7 @@ For creators, freelancers, entrepreneurs, and small business owners, user feedba
 
 - Knex.js
 
- - bcrypt.js
+ - argon2
 
 - jsonwebtoken(JWT)
 
