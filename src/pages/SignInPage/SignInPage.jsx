@@ -14,16 +14,18 @@ export default function SignInPage(){
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5050/users/login', {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/login`, {
         email,
         password,
       });
       const { token } = response.data;
-      // Store the JWT token in localStorage
+      console.log(token);
+      // Store the JWT 
       localStorage.setItem('token', token);
-      navigate('/home'); // Redirect to the home page after successful sign-in
+      navigate('/home'); 
     } catch (err) {
-      setError(err.response?.data?.message || 'Error logging in');
+      console.error('Error during sign-in:', err); 
+      setError(err);
     }
   };
 
