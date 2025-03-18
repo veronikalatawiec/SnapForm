@@ -227,6 +227,52 @@ There is currently no plan to link Snap Form to an external API.
 	- form responses object
 { "form_id": 1, "section_1": "Yes", "section_2": "yes",}
 
+**POST /forms/public_id**
+
+-   Posts a response for a public form
+
+    **Parameters**
+	-   public_id: Unique identifier for the public form (provided when the form is created).
+	-   sections: Array of objects containing answers for the form sections.
+		-   Each object in sections contains:
+			-   id: The form section ID.
+			-   answer: The user's response.
+
+	 **Response**
+	- Success message
+	{
+  "message": "Responses successfully submitted"
+}
+
+**GET /forms/public_id**
+
+-   Get the details of a specific form for public access (anyone with the link can access).
+
+    **Parameters**
+	-   public_id: Unique identifier for the public form (provided when the form is created).
+
+	 **Response**
+	- form object
+{
+  "form_id": 1,
+  "name": "Customer Feedback",
+  "status": true,
+  "design_object": {"theme": "dark"},
+  "sections": [
+    {
+      "form_section_id": 1,
+      "type": "text",
+      "label": "What did you like about the product?"
+    },
+    {
+      "form_section_id": 2,
+      "type": "radio",
+      "label": "Would you recommend this product?",
+      "options": ["Yes", "No"]
+    }
+  ]
+}
+
 ## Roadmap
 (Perhaps an optimistic one)
 
