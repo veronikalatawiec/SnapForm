@@ -1,5 +1,6 @@
 import './SectionMultiChoice.scss';
 import React, { useState } from 'react';
+import Button from '../Button/Button';
 
 export default function MultipleChoiceInput({ onChange }) {
   const [label, setLabel] = useState('');
@@ -34,13 +35,14 @@ export default function MultipleChoiceInput({ onChange }) {
   };
 
   return (
-    <div>
+    <div className='multi-choice__container'>
       <input
         type="text"
         placeholder="Label"
         value={label}
         onChange={handleLabelChange}
         required
+        className='multi-choice__label'
       />
       <input
         type="text"
@@ -48,6 +50,7 @@ export default function MultipleChoiceInput({ onChange }) {
         value={placeholder}
         onChange={handlePlaceholderChange}
         required
+        className='multi-choice__placeholder'
       />
       {options.map((option, index) => (
         <input
@@ -57,13 +60,12 @@ export default function MultipleChoiceInput({ onChange }) {
           onChange={(e) => handleOptionChange(index, e)}
           placeholder={`Option ${index + 1}`}
           required
+          className='multi-choice__option'
         />
       ))}
-      <button type="button" onClick={addOption}>Add Option</button>
+      <Button type="button" onClick={addOption} text="Add Option" className="btn--secondary"/>
       {options.length > 1 && (
-        <button type="button" onClick={removeLast}>
-          Remove Option
-        </button>
+        <Button type="button" onClick={removeLast} text="Remove Option" className="btn--delete" icon=""/>
       )}
     </div>
   );

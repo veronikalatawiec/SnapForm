@@ -16,3 +16,5 @@ export default function Button({ className, onClick, icon, type, disabled, text 
     </button>
   );
 };
+
+//note have link, delete, primary, secondary, disabled
