@@ -16,7 +16,7 @@ export default function SectionLongText({ onChange }) {
   };
 
   return (
-    <div className='long-text__container'>
+    <div className='long-text'>
       <input
         type="text"
         placeholder="Add a label"

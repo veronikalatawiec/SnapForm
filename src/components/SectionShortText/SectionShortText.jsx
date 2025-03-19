@@ -16,7 +16,7 @@ export default function SectionShortText({ onChange }) {
   };
 
   return (
-    <div className='short-text__container'>
+    <div className='short-text'>
       <input
         type="text"
         placeholder="Add a label"

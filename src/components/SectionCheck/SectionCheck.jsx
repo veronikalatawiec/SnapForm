@@ -39,6 +39,7 @@ export default function CheckboxInput({ onChange }) {
         value={label}
         onChange={handleLabelChange}
         required
+        className="checkbox__placeholder"
       />
       <input
         type="text"
@@ -46,6 +47,7 @@ export default function CheckboxInput({ onChange }) {
         value={placeholder}
         onChange={handlePlaceholderChange}
         required
+        className="checkbox__placeholder"
       />
 
       {options.map((option, index) => (
@@ -56,6 +58,7 @@ export default function CheckboxInput({ onChange }) {
             onChange={(e) => handleOptionChange(index, e)}
             placeholder={`Option ${index + 1}`}
             required
+            className="checkbox__option"
           />
         </div>
       ))}

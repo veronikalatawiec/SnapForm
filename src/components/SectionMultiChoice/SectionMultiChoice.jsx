@@ -35,7 +35,7 @@ export default function MultipleChoiceInput({ onChange }) {
   };
 
   return (
-    <div className='multi-choice__container'>
+    <div className='multi-choice'>
       <input
         type="text"
         placeholder="Label"
