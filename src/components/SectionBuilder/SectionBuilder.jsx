@@ -67,13 +67,13 @@ export default function SectionBuilder() {
       formData, 
       {
         headers: {
-          'Authorization': `Bearer ${token}`,  // Include the JWT token in the Authorization header
+          'Authorization': `Bearer ${token}`, 
         },
       }
     );
 
     console.log('Form created:', response.data);
-    navigate('/home');  // Redirect after form is created
+    navigate('/home'); 
   } catch (err) {
     console.error('Error creating form:', err);
   }
