@@ -27,16 +27,19 @@ export default function App() {
     <>
       <Router>
       <Routes>
-        {/* <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<HomePage />} /> */}
-        <Route path="/" element={isAuthenticated ? <HomePage /> : <Navigate to="/signin" />} />
-        <Route path="/home" element={isAuthenticated ? <HomePage /> : <Navigate to="/signin" />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
+        {/* <Route path="/" element={isAuthenticated ? <HomePage /> : <Navigate to="/signin" />} />
+        <Route path="/home" element={isAuthenticated ? <HomePage /> : <Navigate to="/signin" />} /> */}
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/signin" element={<SignInPage />} />
-        <Route path="/form/create" element={isAuthenticated ? <FormCreatePage /> : <Navigate to="/" />} />
+        {/* <Route path="/form/create" element={isAuthenticated ? <FormCreatePage /> : <Navigate to="/" />} />
         <Route path="/form/edit/:id" element={isAuthenticated ? <FormEditPage /> : <Navigate to="/" />} />
-        <Route path="/form/responses/:id" element={isAuthenticated ? <FormResponsesPage /> : <Navigate to="/" />} />
-        <Route path="/hosted/:id" element={<HostedFormPage />} />
+        <Route path="/form/responses/:id" element={isAuthenticated ? <FormResponsesPage /> : <Navigate to="/" />} /> */}
+        <Route path="/form/create" element={<FormCreatePage />} />
+        <Route path="/form/edit/:id" element={<FormEditPage />} />
+        <Route path="/form/responses/:id" element={<FormResponsesPage />} />
+        <Route path="/form/:id" element={<HostedFormPage />} />
       </Routes>
     </Router>
     </>
