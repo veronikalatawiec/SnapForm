@@ -97,24 +97,30 @@ export default function SectionBuilder() {
 
         {formSections.map((section, index) => {
           switch (section.type) {
-            // case 'heading':
-            //   return (
-            //     <ShortText
-            //       key={index}
-            //       onChange={(newSection) => handleSectionChange(index, newSection)}
-            //       label={section.label}
-            //       placeholder={section.placeholder}
-            //     />
-            //   );
-            //   case 'paragraph':
-            //   return (
-            //     <ShortText
-            //       key={index}
-            //       onChange={(newSection) => handleSectionChange(index, newSection)}
-            //       label={section.label}
-            //       placeholder={section.placeholder}
-            //     />
-            //   );
+            case 'header':
+                return (
+                    <div key={index}>
+                        <input
+                            type="text"
+                            placeholder="Section Header"
+                            value={section.label}
+                            onChange={(e) => handleSectionChange(index, { ...section, label: e.target.value })}
+                            required
+                        />
+                        <Button type="button" onClick={() => removeSection(index)} text="Delete" />
+                    </div>
+                );
+            case 'paragraph':
+                return (
+                <div key={index}>
+                    <textarea
+                        placeholder="Paragraph text"
+                        value={section.label}
+                        onChange={(e) => handleSectionChange(index, { ...section, label: e.target.value })}
+                    />
+                    <Button type="button" onClick={() => removeSection(index)} text="Delete" />
+                </div>
+            );
             case 'shorttext':
               return (
                 <div key={index}>
@@ -168,10 +174,10 @@ export default function SectionBuilder() {
           }
         })}
 
-        {/* <div>
-            <Button type="button" onClick={() => addSection('header')} text="Add A Heading" className="btn--build"/>
+        <div>
+            <Button type="button" onClick={() => addSection('header')} text="Add A Header" className="btn--build"/>
             <Button type="button" onClick={() => addSection('paragraph')} text="Add A Paragraph" className="btn--build" />
-        </div> */}
+        </div>
         <div>
           <Button type="button" onClick={() => addSection('shorttext')} text="Add Short Text Question" className="btn--build"/>
           <Button type="button" onClick={() => addSection('longtext')} text="Add Long Text Question" className="btn--build"/>
