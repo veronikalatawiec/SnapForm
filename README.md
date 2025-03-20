@@ -78,16 +78,12 @@ For creators, freelancers, entrepreneurs, and small business owners, user feedba
   - Axios
    
    - Vite
+
+   - jwt-decode
    
    - Pragmatic Drag-and-Drop
    
   -  React-colorful
-   
-  -  Reactjs-social-login
-   
-  - mui/x-charts (?)
-
-   - SurveyJS (?)
 
 #### Server Libraries
 
