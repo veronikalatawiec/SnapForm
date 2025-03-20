@@ -35,6 +35,11 @@ export default function SectionBuilder() {
     setFormSections([...formSections, newSection]);
   };
 
+  const removeSection = (index) => {
+    const updatedSections = formSections.filter((_, i) => i !== index);
+    setFormSections(updatedSections);
+  };
+
   // form submit handle
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -112,41 +117,51 @@ export default function SectionBuilder() {
             //   );
             case 'shorttext':
               return (
-                <ShortText
-                  key={index}
-                  onChange={(newSection) => handleSectionChange(index, newSection)}
-                  label={section.label}
-                  placeholder={section.placeholder}
-                />
+                <div key={index}>
+                    <ShortText
+                        onChange={(newSection) => handleSectionChange(index, newSection)}
+                        label={section.label}
+                        placeholder={section.placeholder}
+                    />
+                    <Button type="button" onClick={() => removeSection(index)} text="Delete" className="btn--delete" icon='' />
+                </div>
               );
             case 'longtext':
               return (
-                <LongText
-                  key={index}
-                  onChange={(newSection) => handleSectionChange(index, newSection)}
-                  label={section.label}
-                  placeholder={section.placeholder}
-                />
+                <div key={index}>
+                    <LongText
+                        onChange={(newSection) => handleSectionChange(index, newSection)}
+                        label={section.label}
+                        placeholder={section.placeholder}
+                    />
+                    <Button type="button" onClick={() => removeSection(index)} text="Delete" className="btn--delete" icon='' />
+                </div>
+                
               );
             case 'checkbox':
               return (
-                <Checkbox
-                  key={index}
-                  onChange={(newSection) => handleSectionChange(index, newSection)}
-                  label={section.label}
-                  placeholder={section.placeholder}
-                  options={section.options}
-                />
+                <div key={index}>
+                    <Checkbox
+                        onChange={(newSection) => handleSectionChange(index, newSection)}
+                        label={section.label}
+                        placeholder={section.placeholder}
+                        options={section.options}
+                    />
+                    <Button type="button" onClick={() => removeSection(index)} text="Delete" className="btn--delete" icon='' />
+                </div>
+                
               );
             case 'radio':
               return (
-                <MultipleChoice
-                  key={index}
-                  onChange={(newSection) => handleSectionChange(index, newSection)}
-                  label={section.label}
-                  placeholder={section.placeholder}
-                  options={section.options}
-                />
+                <div key={index}>
+                    <MultipleChoice
+                        onChange={(newSection) => handleSectionChange(index, newSection)}
+                        label={section.label}
+                        placeholder={section.placeholder}
+                        options={section.options}
+                    />
+                    <Button type="button" onClick={() => removeSection(index)} text="Delete" className="btn--delete" icon='' />
+                </div>
               );
             default:
               return null;
