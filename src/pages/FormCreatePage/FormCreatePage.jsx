@@ -1,10 +1,11 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import SectionBuilder from '../../components/SectionBuilder/SectionBuilder';
 
 const FormCreatePage = () => {
   return (
     <div>
       <h1>Create Form</h1>
+      <SectionBuilder />
     </div>
   );
 };

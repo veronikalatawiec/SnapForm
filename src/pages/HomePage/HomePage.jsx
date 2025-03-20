@@ -1,12 +1,15 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import SectionBuilder from '../../components/SectionBuilder/SectionBuilder';
+import Button from '../../components/Button/Button';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
     <div>
       <h1>User Home</h1>
-      <SectionBuilder />
+      <Link to="/form/create">
+        <Button className="btn--primary" text="Create a Form"/>
+      </Link>
+      {/* <SectionBuilder /> */}
     </div>
   );
 };
