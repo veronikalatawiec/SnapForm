@@ -20,7 +20,7 @@ export default function CheckboxInput({ onChange }) {
   const addOption = () => {
     setOptions([...options, '']);
   };
-  const removeLast = (index) => {
+  const removeLast = () => {
     if (options.length > 1) {
         setOptions(options.slice(0, options.length - 1));
     //   onChange({ type: 'checkbox', label, options: newOptions, placeholder });

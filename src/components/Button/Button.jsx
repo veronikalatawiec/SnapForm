@@ -10,11 +10,11 @@ export default function Button({ className, onClick, icon, type, disabled, text 
       disabled={disabled}
     >
         {text}
-      {(className === 'btn--link' || className === 'btn--delete') && icon && (
+      {(className === 'btn--link' || className === 'btn--delete' || className === 'btn--build') && icon && (
         <span className="btn__icon">{icon}</span>
       )}
     </button>
   );
 };
 
-//note have link, delete, primary, secondary, disabled
+//note have link, delete, primary, secondary, disabled and BUILD

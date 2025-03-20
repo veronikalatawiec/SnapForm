@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import './SectionShortText.scss';
 
-export default function SectionShortText({ onChange }) {
+export default function SectionShortText({ onChange}) {
   const [label, setLabel] = useState('');
   const [placeholder, setPlaceholder] = useState('');
 
   const handleLabelChange = (e) => {
     setLabel(e.target.value);
-    onChange({ type: 'text', label, placeholder });
+    onChange({ type: 'shorttext', label: e.target.value, placeholder });
   };
 
   const handlePlaceholderChange = (e) => {
     setPlaceholder(e.target.value);
-    onChange({ type: 'text', label, placeholder });
+    onChange({ type: 'shorttext', label, placeholder: e.target.value });
   };
 
   return (

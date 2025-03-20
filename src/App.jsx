@@ -14,13 +14,14 @@ export default function App() {
   // check for token when comp is mounted
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
+    // Check if token is in localStorage initially
     const token = localStorage.getItem('token');
     if (token) {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
     }
-  }, []);
+  });
 
   return (
     <>
@@ -32,9 +33,9 @@ export default function App() {
         <Route path="/home" element={isAuthenticated ? <HomePage /> : <Navigate to="/signin" />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/signin" element={<SignInPage />} />
-        <Route path="/form/create" element={<FormCreatePage />} />
-        <Route path="/form/edit/:id" element={<FormEditPage />} />
-        <Route path="/form/responses/:id" element={<FormResponsesPage />} />
+        <Route path="/form/create" element={isAuthenticated ? <FormCreatePage /> : <Navigate to="/" />} />
+        <Route path="/form/edit/:id" element={isAuthenticated ? <FormEditPage /> : <Navigate to="/" />} />
+        <Route path="/form/responses/:id" element={isAuthenticated ? <FormResponsesPage /> : <Navigate to="/" />} />
         <Route path="/hosted/:id" element={<HostedFormPage />} />
       </Routes>
     </Router>

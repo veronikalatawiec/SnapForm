@@ -7,12 +7,12 @@ export default function SectionLongText({ onChange }) {
 
   const handleLabelChange = (e) => {
     setLabel(e.target.value);
-    onChange({ type: 'textarea', label, placeholder });
+    onChange({ type: 'longtext', label: e.target.value, placeholder });
   };
 
   const handlePlaceholderChange = (e) => {
     setPlaceholder(e.target.value);
-    onChange({ type: 'textarea', label, placeholder });
+    onChange({ type: 'longtext', label, placeholder: e.target.value });
   };
 
   return (
