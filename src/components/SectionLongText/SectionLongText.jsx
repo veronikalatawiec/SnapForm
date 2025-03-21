@@ -3,16 +3,10 @@ import React, { useState } from 'react';
 
 export default function SectionLongText({ onChange }) {
   const [label, setLabel] = useState('');
-  const [placeholder, setPlaceholder] = useState('');
 
   const handleLabelChange = (e) => {
     setLabel(e.target.value);
-    onChange({ type: 'longtext', label: e.target.value, placeholder });
-  };
-
-  const handlePlaceholderChange = (e) => {
-    setPlaceholder(e.target.value);
-    onChange({ type: 'longtext', label, placeholder: e.target.value });
+    onChange({ type: 'longtext', label: e.target.value});
   };
 
   return (
@@ -24,14 +18,6 @@ export default function SectionLongText({ onChange }) {
         onChange={handleLabelChange}
         required
         className='long-text__label'
-      />
-      <input
-        type="text"
-        placeholder="Add a placeholder"
-        value={placeholder}
-        onChange={handlePlaceholderChange}
-        required
-        className='long-text__placeholder'
       />
     </div>
   );

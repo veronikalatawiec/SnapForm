@@ -73,7 +73,7 @@ export default function Table() {
             },
             }
           );
-
+            console.log(response)
           const updatedForms = forms.map((form) =>
             form.form_id === formId ? { ...form, status: updatedStatus } : form
           );

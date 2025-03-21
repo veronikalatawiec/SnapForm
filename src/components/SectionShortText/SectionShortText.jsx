@@ -7,12 +7,7 @@ export default function SectionShortText({ onChange}) {
 
   const handleLabelChange = (e) => {
     setLabel(e.target.value);
-    onChange({ type: 'shorttext', label: e.target.value, placeholder });
-  };
-
-  const handlePlaceholderChange = (e) => {
-    setPlaceholder(e.target.value);
-    onChange({ type: 'shorttext', label, placeholder: e.target.value });
+    onChange({ type: 'shorttext', label: e.target.value});
   };
 
   return (
@@ -24,14 +19,6 @@ export default function SectionShortText({ onChange}) {
         onChange={handleLabelChange}
         required
         className='short-text__label'
-      />
-      <input
-        type="text"
-        placeholder="Add a placeholder"
-        value={placeholder}
-        onChange={handlePlaceholderChange}
-        required
-        className='short-text__placeholder'
       />
     </div>
   );

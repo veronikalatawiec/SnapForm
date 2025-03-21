@@ -20,7 +20,7 @@ export default function HostedFormPage() {
       }
     };
     fetchForm();
-  }, [id]);
+  }, [id, user_id]);
 
   // Handle form submission WIP
   const handleSubmit = async (e) => {
@@ -35,7 +35,7 @@ export default function HostedFormPage() {
     return <div>Loading...</div>;
   }
 
-  if (!form.status) {
+  if (!form.form.status) {
     return <div>This form is not currently accepting responses.</div>;
   }
 
