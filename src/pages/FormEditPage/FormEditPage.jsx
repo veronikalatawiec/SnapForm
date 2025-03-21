@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 
-const FormEditPage = () => {
+export default function FormEditPage(){
   return (
     <div>
       <h1>Edit Form</h1>
@@ -12,5 +12,3 @@ const FormEditPage = () => {
     </div>
   );
 };
-
-export default FormEditPage;

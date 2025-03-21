@@ -1,6 +1,7 @@
 import './App.scss'
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import SignUpPage from './pages/SignUpPage/SignUpPage.jsx';
 import SignInPage from './pages/SignInPage/SignInPage.jsx';
 import HomePage from './pages/HomePage/HomePage.jsx';
@@ -27,15 +28,17 @@ export default function App() {
     <>
       <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<HomePage />} />
-        {/* <Route path="/" element={isAuthenticated ? <HomePage /> : <Navigate to="/signin" />} />
-        <Route path="/home" element={isAuthenticated ? <HomePage /> : <Navigate to="/signin" />} /> */}
+        <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/signin" element={<SignInPage />} />
+
+        {/* <Route path="/" element={isAuthenticated ? <HomePage /> : <Navigate to="/signin" />} />
+        <Route path="/home" element={isAuthenticated ? <HomePage /> : <Navigate to="/signin" />} /> */}
         {/* <Route path="/form/create" element={isAuthenticated ? <FormCreatePage /> : <Navigate to="/" />} />
         <Route path="/form/edit/:id" element={isAuthenticated ? <FormEditPage /> : <Navigate to="/" />} />
         <Route path="/form/responses/:id" element={isAuthenticated ? <FormResponsesPage /> : <Navigate to="/" />} /> */}
+        
+        <Route path="/home" element={<HomePage />} />
         <Route path="/form/create" element={<FormCreatePage />} />
         <Route path="/form/edit/:id" element={<FormEditPage />} />
         <Route path="/form/responses/:id" element={<FormResponsesPage />} />

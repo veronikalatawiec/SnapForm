@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Input = ({ label, type, value, onChange, required, placeholder }) => {
+export default function Input({ label, type, value, onChange, required, placeholder }){
   return (
     <div className="input">
       {label && <label className="input__label">{label}</label>}
@@ -14,5 +14,3 @@ const Input = ({ label, type, value, onChange, required, placeholder }) => {
     </div>
   );
 };
-
-export default Input;
