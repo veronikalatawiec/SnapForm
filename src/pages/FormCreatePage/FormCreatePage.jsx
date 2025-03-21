@@ -7,7 +7,7 @@ export default function FormCreatePage(){
   return (
     <div>
       <h1>Create Form</h1>
-      <Link to="/">
+      <Link to="/home">
         <Button text="Back" className="btn--link"/>
       </Link>
       <SectionBuilder />

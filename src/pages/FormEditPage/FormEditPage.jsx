@@ -6,7 +6,7 @@ export default function FormEditPage(){
   return (
     <div>
       <h1>Edit Form</h1>
-      <Link to="/">
+      <Link to="/home">
         <Button text="Back" className="btn--link"/>
       </Link>
     </div>

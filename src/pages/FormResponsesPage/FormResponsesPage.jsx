@@ -6,7 +6,7 @@ export default function FormResponsesPage(){
   return (
     <div>
       <h1>Form Responses</h1>
-      <Link to="/">
+      <Link to="/home">
         <Button text="Back" className="btn--link"/>
       </Link>
     </div>

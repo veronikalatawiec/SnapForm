@@ -7,10 +7,13 @@ import { getUserIdFromToken } from '../../../utility.js';
 import { v4 as uuidv4 } from 'uuid';
 import LinkButton from '../LinkButton/LinkButton.jsx';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../Modal/Modal.jsx';
 
 export default function Table() {
   const [forms, setForms] = useState([]);
   const [error, setError] = useState('');
+  const [showModal, setShowModal] = useState(false); 
+  const [deleteFormId, setDeleteFormId] = useState(null); 
   const navigate = useNavigate();
 
   // Fetch forms
@@ -80,25 +83,31 @@ export default function Table() {
         }
       };
 
-  // delete form WIP NEED EP
-//   const handleDelete = async (formId) => {
-//     try {
-//       const token = localStorage.getItem('token');
-//       await axios.delete(`${import.meta.env.VITE_API_URL}/forms/${formId}`, {
-//         headers: {
-//           'Authorization': `Bearer ${token}`,
-//         },
-//       });
-//       setForms(forms.filter(form => form.id !== formId));
-//     } catch (err) {
-//       console.error('Error deleting form', err);
-//     }
-//   };
+        // Handle modal open
+        const openModal = (formId) => {
+          setDeleteFormId(formId);
+          setShowModal(true);
+        };
+
+        // Handle modal close
+        const closeModal = () => {
+          setShowModal(false);
+          setDeleteFormId(null);
+        };
+
 
   return (
     <div className="forms">
       <h2 className="forms__header" >Your Forms</h2>
       {error && <p>{error}</p>}
+      {showModal && (
+        <Modal
+          formId={deleteFormId}
+          onClose={closeModal}
+          setForms={setForms}
+        />
+      )}
+
       <div className="forms__table">
         <div className="forms__body">
           {forms.map((form) => (
@@ -114,7 +123,7 @@ export default function Table() {
               </div>
               <div className="forms__data forms__data--bot">
                 <Button text="Edit" onClick={() => navigate(`/form/edit/${form.form_id}`)} className="btn--primary"/>
-                <Button text="Delete" onClick={() => handleDelete(form.form_id)} className="btn--delete"/>
+                <Button text="Delete" onClick={() => openModal(form.form_id)} className="btn--delete"/>
               </div>
             </div>
           ))}
