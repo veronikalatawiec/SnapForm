@@ -361,6 +361,7 @@ There is currently no plan to link Snap Form to an external API.
 
 -  As a logged in user, I want to view visual analytics on launched forms, so I can easily understand feedback and make data-driven decisions.
 -  Form Templates for a quick start (3-5 initially?)
+-  Individual response detailed view
     
 -   Form themes for easy customization(3-5 initially?)
     
