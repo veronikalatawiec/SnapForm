@@ -32,9 +32,10 @@ export default function Table() {
             },
           });
           setForms(response.data);  
+          setError('');
         } catch (err) {
           setError('Error fetching forms');
-          console.error(err);
+          console.error('Error fetching forms', err);
         }
       };
   
@@ -99,7 +100,6 @@ export default function Table() {
   return (
     <div className="forms">
       <h2 className="forms__header" >Your Forms</h2>
-      {error && <p>{error}</p>}
       {showModal && (
         <Modal
           formId={deleteFormId}
@@ -107,28 +107,40 @@ export default function Table() {
           setForms={setForms}
         />
       )}
-
-      <div className="forms__table">
-        <div className="forms__body">
-          {forms.map((form) => (
-            <div key={uuidv4()} className="forms__row">
-              <div className="forms__data forms__data--top">{form.name}
-              <Switch  
+      {error && <p>{error}</p>}
+      {forms.length === 0 ? (
+        <div className="forms__no-forms">
+          <h3>No Forms Found</h3>
+          <p>We couldn't find any forms for your account. Start by creating your first form!</p>
+          <Button
+            text="Create Form"
+            onClick={() => navigate('/form/create')}
+            className="btn--primary"
+          />
+        </div>
+      ) : (
+        <div className="forms__table">
+          <div className="forms__body">
+            {forms.map((form) => (
+              <div key={uuidv4()} className="forms__row">
+                <div className="forms__data forms__data--top">
+                  {form.name}
+                  <Switch  
                     isLive={form.status} 
                     onToggle={() => handleToggle(form.form_id)} />
+                </div>
+                <div className="forms__data forms__data--mid">
+                  <Button text="View Responses" className="btn--link" onClick={() => navigate(`/form/responses/${form.form_id}`)} />
+                  <LinkButton text="Copy Link" formId={form.form_id} className="btn--link" />
+                </div>
+                <div className="forms__data forms__data--bot">
+                  <Button text="Edit" onClick={() => navigate(`/form/edit/${form.form_id}`)} className="btn--primary"/>
+                  <Button text="Delete" onClick={() => openModal(form.form_id)} className="btn--delete"/>
+                </div>
               </div>
-              <div className="forms__data forms__data--mid">
-                <Button text="View Responses" className="btn--link" onClick={() => navigate(`/form/responses/${form.form_id}`)} />
-                <LinkButton text="Copy Link" formId={form.form_id} className="btn--link" />
-              </div>
-              <div className="forms__data forms__data--bot">
-                <Button text="Edit" onClick={() => navigate(`/form/edit/${form.form_id}`)} className="btn--primary"/>
-                <Button text="Delete" onClick={() => openModal(form.form_id)} className="btn--delete"/>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+        )}
       </div>
-    </div>
-  );
-}
+  )};
