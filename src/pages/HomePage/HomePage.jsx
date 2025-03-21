@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../../components/Button/Button';
 import { Link } from 'react-router-dom';
-import Table from '../../components/Table/Table'
+import Table from '../../components/Forms/Forms'
 
 const HomePage = () => {
   return (

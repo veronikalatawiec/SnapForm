@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './Forms.scss'
 import Switch from '../Switch/Switch.jsx';  
 import Button from '../Button/Button.jsx'; 
 import { getUserIdFromToken } from '../../../utility.js';
@@ -7,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import LinkButton from '../LinkButton/LinkButton.jsx';
 import { useNavigate } from 'react-router-dom';
 
-export default function HomePage() {
+export default function Table() {
   const [forms, setForms] = useState([]);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -98,26 +99,27 @@ export default function HomePage() {
     <div className="forms">
       <h2 className="forms__header" >Your Forms</h2>
       {error && <p>{error}</p>}
-      <table className="forms__table">
-        <tbody className="forms__body">
+      <div className="forms__table">
+        <div className="forms__body">
           {forms.map((form) => (
-            <tr key={uuidv4()} className="forms__row">
-              <td className="forms__data">{form.name}</td>
-              <td className="forms__data">
-                <Switch  
+            <div key={uuidv4()} className="forms__row">
+              <div className="forms__data forms__data--top">{form.name}
+              <Switch  
                     isLive={form.status} 
                     onToggle={() => handleToggle(form.form_id)} />
-              </td>
-              <td className="forms__data">
-                <LinkButton text="Copy Link" formId={form.form_id} className="btn--link" />
+              </div>
+              <div className="forms__data forms__data--mid">
                 <Button text="View Responses" className="btn--link" onClick={() => navigate(`/form/responses/${form.form_id}`)} />
-                {/* <Button text="Edit" onClick={() => navigate(`/form/edit/${form.form_id}`)} className="btn--primary"/> */}
-                {/* <Button text="Delete" onClick={() => handleDelete(form.form_id)} className="btn--delete"/> */}
-              </td>
-            </tr>
+                <LinkButton text="Copy Link" formId={form.form_id} className="btn--link" />
+              </div>
+              <div className="forms__data forms__data--bot">
+                <Button text="Edit" onClick={() => navigate(`/form/edit/${form.form_id}`)} className="btn--primary"/>
+                <Button text="Delete" onClick={() => handleDelete(form.form_id)} className="btn--delete"/>
+              </div>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   );
 }

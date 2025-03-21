@@ -7,7 +7,7 @@ export default function HostedFormPage() {
   const [form, setForm] = useState(null);
   const [error, setError] = useState('');
   
-  // Fetch the form data when the component mounts
+  // get form
   useEffect(() => {
     const fetchForm = async () => {
       try {
@@ -25,6 +25,7 @@ export default function HostedFormPage() {
   // Handle form submission WIP
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //handle it
   };
   if (error) {
     return <div>{error}</div>;
