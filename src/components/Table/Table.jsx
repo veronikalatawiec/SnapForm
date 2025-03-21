@@ -4,6 +4,7 @@ import Switch from '../Switch/Switch.jsx';
 import Button from '../Button/Button.jsx'; 
 import { getUserIdFromToken } from '../../../utility.js';
 import { v4 as uuidv4 } from 'uuid';
+import LinkButton from '../LinkButton/LinkButton.jsx';
 
 export default function HomePage() {
   const [forms, setForms] = useState([]);
@@ -75,7 +76,7 @@ export default function HomePage() {
           setError('Error toggling status');
         }
       };
-      
+
   // delete form WIP NEED EP
 //   const handleDelete = async (formId) => {
 //     try {
@@ -106,10 +107,10 @@ export default function HomePage() {
                     onToggle={() => handleToggle(form.form_id)} />
               </td>
               <td className="forms__data">
-                <Button text="View Responses" className="btn--link" onClick={() => navigate(`/form/responses/${form.id}`)} />
-                <Button text="View Responses" className="btn--link" onClick={() => navigate(`/form/responses/${form.id}`)} />
-                <Button text="Edit" onClick={() => navigate(`/form/edit/${form.id}`)} className="btn--primary"/>
-                <Button text="Delete" onClick={() => handleDelete(form.id)} className="btn--delete"/>
+                <LinkButton text="Copy Link" formId={form.form_id} className="btn--link" onClick={() => navigate(`/form/${form.form_id}`)} />
+                <Button text="View Responses" className="btn--link" onClick={() => navigate(`/forms/responses/${form.form_id}`)} />
+                {/* <Button text="Edit" onClick={() => navigate(`/form/edit/${form.form_id}`)} className="btn--primary"/> */}
+                {/* <Button text="Delete" onClick={() => handleDelete(form.form_id)} className="btn--delete"/> */}
               </td>
             </tr>
           ))}

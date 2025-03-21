@@ -17,4 +17,3 @@ export default function Switch({ isLive, onToggle }) {
     </div>
   );
 }
-//{ isLive, onToggle }?? idk yet have to pass to parent
