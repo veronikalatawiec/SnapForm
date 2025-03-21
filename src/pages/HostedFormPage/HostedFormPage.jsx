@@ -42,7 +42,7 @@ export default function HostedFormPage() {
   // Render FORM
   return (
     <div>
-      <h2>{form.name}</h2>
+      <h2>{form.form.name}</h2>
       <form onSubmit={handleSubmit}>
         {/* WIP NEED TO RENDER FORM FROM RESPONSE */}
         <button type="submit">Submit</button>
