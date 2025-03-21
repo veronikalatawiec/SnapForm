@@ -5,10 +5,12 @@ import Button from '../Button/Button.jsx';
 import { getUserIdFromToken } from '../../../utility.js';
 import { v4 as uuidv4 } from 'uuid';
 import LinkButton from '../LinkButton/LinkButton.jsx';
+import { useNavigate } from 'react-router-dom';
 
 export default function HomePage() {
   const [forms, setForms] = useState([]);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   // Fetch forms
   useEffect(() => {
@@ -107,8 +109,8 @@ export default function HomePage() {
                     onToggle={() => handleToggle(form.form_id)} />
               </td>
               <td className="forms__data">
-                <LinkButton text="Copy Link" formId={form.form_id} className="btn--link" onClick={() => navigate(`/form/${form.form_id}`)} />
-                <Button text="View Responses" className="btn--link" onClick={() => navigate(`/forms/responses/${form.form_id}`)} />
+                <LinkButton text="Copy Link" formId={form.form_id} className="btn--link" />
+                <Button text="View Responses" className="btn--link" onClick={() => navigate(`/form/responses/${form.form_id}`)} />
                 {/* <Button text="Edit" onClick={() => navigate(`/form/edit/${form.form_id}`)} className="btn--primary"/> */}
                 {/* <Button text="Delete" onClick={() => handleDelete(form.form_id)} className="btn--delete"/> */}
               </td>

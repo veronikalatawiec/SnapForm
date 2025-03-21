@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '../../components/Button/Button';
 import { Link } from 'react-router-dom';
-import Switch from '../../components/Switch/Switch';
 import Table from '../../components/Table/Table'
 
 const HomePage = () => {

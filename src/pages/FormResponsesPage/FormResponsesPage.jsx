@@ -1,10 +1,14 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Button from '../../components/Button/Button';
 
 const FormResponsesPage = () => {
   return (
     <div>
       <h1>Form Responses</h1>
+      <Link to="/">
+        <Button text="Back" className="btn--link"/>
+      </Link>
     </div>
   );
 };

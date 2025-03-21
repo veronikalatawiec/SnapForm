@@ -39,7 +39,7 @@ export default function App() {
         <Route path="/form/create" element={<FormCreatePage />} />
         <Route path="/form/edit/:id" element={<FormEditPage />} />
         <Route path="/form/responses/:id" element={<FormResponsesPage />} />
-        <Route path="/form/:id" element={<HostedFormPage />} />
+        <Route path="/form/live/:user_id/:id" element={<HostedFormPage />} />
       </Routes>
     </Router>
     </>

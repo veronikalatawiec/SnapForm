@@ -1,13 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getUserIdFromToken } from '../../../utility.js';
 import './LinkButton.scss';
 
 export default function LinkButton({ formId }) {
   const navigate = useNavigate();
-
+    const userId = getUserIdFromToken(); 
   const handleCopyLink = () => {
     // make link
-    const formLink = `${import.meta.env.VITE_CLIENT_URL}/forms/${formId}`;
+    const formLink = `${import.meta.env.VITE_CLIENT_URL}/form/live/${userId}/${formId}`;
 
     // Copy to clip
     navigator.clipboard.writeText(formLink)
