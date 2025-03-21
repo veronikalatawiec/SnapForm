@@ -9,13 +9,13 @@ export default function CheckboxInput({ onChange }) {
 
   const handleLabelChange = (e) => {
     setLabel(e.target.value);
-    onChange({ type: 'checkbox', label, options, placeholder });
+    onChange({ type: 'checkbox', label, options, placeholder:null });
   };
   const handleOptionChange = (index, e) => {
     const newOptions = [...options];
     newOptions[index] = e.target.value;
     setOptions(newOptions);
-    onChange({ type: 'checkbox', label, options: newOptions, placeholder });
+    onChange({ type: 'checkbox', label, options: newOptions, placeholder:null });
   };
   const addOption = () => {
     setOptions([...options, '']);
@@ -25,10 +25,6 @@ export default function CheckboxInput({ onChange }) {
         setOptions(options.slice(0, options.length - 1));
     //   onChange({ type: 'checkbox', label, options: newOptions, placeholder });
     }
-  };
-  const handlePlaceholderChange = (e) => {
-    setPlaceholder(e.target.value);
-    onChange({ type: 'checkbox', label, options, placeholder });
   };
 
   return (
@@ -41,15 +37,6 @@ export default function CheckboxInput({ onChange }) {
         required
         className="checkbox__placeholder"
       />
-      <input
-        type="text"
-        placeholder="Placeholder"
-        value={placeholder}
-        onChange={handlePlaceholderChange}
-        required
-        className="checkbox__placeholder"
-      />
-
       {options.map((option, index) => (
         <div key={index}>
           <input

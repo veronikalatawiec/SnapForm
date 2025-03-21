@@ -9,14 +9,14 @@ export default function MultipleChoiceInput({ onChange }) {
 
   const handleLabelChange = (e) => {
     setLabel(e.target.value);
-    onChange({ type: 'radio', label, options, placeholder });
+    onChange({ type: 'radio', label, options, placeholder:null });
   };
 
   const handleOptionChange = (index, e) => {
     const newOptions = [...options];
     newOptions[index] = e.target.value;
     setOptions(newOptions);
-    onChange({ type: 'radio', label, options: newOptions, placeholder });
+    onChange({ type: 'radio', label, options: newOptions, placeholder:null });
   };
 
   const addOption = () => {
@@ -29,11 +29,6 @@ export default function MultipleChoiceInput({ onChange }) {
     }
   };
 
-  const handlePlaceholderChange = (e) => {
-    setPlaceholder(e.target.value);
-    onChange({ type: 'radio', label, options, placeholder });
-  };
-
   return (
     <div className='multi-choice'>
       <input
@@ -43,14 +38,6 @@ export default function MultipleChoiceInput({ onChange }) {
         onChange={handleLabelChange}
         required
         className='multi-choice__label'
-      />
-      <input
-        type="text"
-        placeholder="Placeholder"
-        value={placeholder}
-        onChange={handlePlaceholderChange}
-        required
-        className='multi-choice__placeholder'
       />
       {options.map((option, index) => (
         <input
