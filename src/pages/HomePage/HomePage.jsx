@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import Switch from '../../components/Switch/Switch';
+import Table from '../../components/Table/Table'
 
 const HomePage = () => {
   return (
@@ -10,8 +11,7 @@ const HomePage = () => {
       <Link to="/form/create">
         <Button className="btn--primary" text="Create a Form"/>
       </Link>
-      <Switch/>
-      {/* <SectionBuilder /> */}
+      <Table />
     </div>
   );
 };
