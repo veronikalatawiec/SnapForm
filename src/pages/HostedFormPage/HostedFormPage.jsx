@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import ShortText from '../../components/ShortText/ShortText.jsx';
 import LongText from '../../components/LongText/LongText.jsx';
 import MultiChoice from '../../components/MultiChoice/MultiChoice.jsx';
@@ -11,6 +11,7 @@ export default function HostedFormPage() {
   const [form, setForm] = useState(null);
   const [error, setError] = useState('');
   const [formData, setFormData] = useState({});
+  const navigate = useNavigate();
   
   // get form
   useEffect(() => {
@@ -41,6 +42,7 @@ export default function HostedFormPage() {
         responses: responses,
       });
       console.log('Form submitted successfully', response.data);
+      navigate('/form/submitted');
     } catch (err) {
       setError('Error submitting form.');
       console.error('Form submission error:', err);
