@@ -1,3 +1,63 @@
 @use "../../styles/partials/fonts";
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+
+.btn{
+    
+    padding: .5rem $mobile-padding;
+    border: none;
+    border-radius: 100px;
+    &__text{
+        @include type-button;
+    }
+    &__icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &--icon{
+        &-right{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+        }
+        &--only{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 500px;
+            padding:0 !important;
+        }
+    }
+    &--primary{
+        transition:ease-in-out .25s;
+        background-color: $secondary-blue;
+        border: 2px solid #ffffff00;
+        &:hover{
+            scale: 1.02;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+    }
+    &--secondary{
+        background-color: $primary-black;
+        transition:ease-in-out .25s;
+        color: $secondary-blue;
+        border: 2px solid $secondary-purple;
+        &:hover{
+            scale: 1.02;
+            background-color: $secondary-green;
+            color: $primary-black;
+            border: 2px solid #ffffff00;
+        }
+    }
+    &__link{
+
+    }
+    &__delete{
+
+    }
+    &__secondary{
+
+    }
+}

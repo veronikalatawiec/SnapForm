@@ -6,17 +6,20 @@ import './Nav.scss'
 export default function Nav(){
   return (
     <div className="nav">
-        <div className="nav__logo">
-            <img></img>
+        <div className="nav__content">
+          <div className="nav__logo">
+                <img className="nav__logo" src="../src/assets/images/logo-dark.svg"/>
+            </div>
+            <div className="nav__btns">
+                <Link to="/signin">
+                    <Button className="btn--secondary" text="Sign In"/>
+                </Link>
+                <Link to="/signup">
+                    <Button className="btn--primary" text="Sign Up"/>
+                </Link>
+            </div>
         </div>
-        <div className="nav__btns">
-            <Link to="/signin">
-                <Button className="btn--secondary" text="Sign In"/>
-            </Link>
-            <Link to="/signup">
-                <Button className="btn--primary" text="Sign Up"/>
-            </Link>
-        </div>
+        
     </div>
   );
 };
