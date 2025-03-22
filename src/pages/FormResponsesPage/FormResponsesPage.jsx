@@ -9,6 +9,7 @@ export default function FormResponsesPage() {
   const [responses, setResponses] = useState([]);
   const [totalResponses, setTotalResponses] = useState(0);
   const [error, setError] = useState('');
+  const [sections, setSections] = useState([]);
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -16,8 +17,8 @@ export default function FormResponsesPage() {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/forms/response/${user_id}/${id}`, {
           headers: {
-          'Authorization': `Bearer ${token}`,
-        },
+            'Authorization': `Bearer ${token}`,
+          },
         });
         setResponses(response.data.responses);
         setTotalResponses(response.data.totalResponses);
@@ -29,53 +30,65 @@ export default function FormResponsesPage() {
     fetchResponses();
   }, [user_id, id]);
 
+  useEffect(() => {
+    const fetchForm = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/forms/live/${user_id}/${id}`
+        );
+        setSections(response.data.sections);
+      } catch (err) {
+        setError('Error fetching form sections');
+        console.error(err);
+      }
+    };
+    fetchForm();
+  }, [user_id, id]);
+
   if (error) {
     return <div>{error}</div>;
   }
 
   if (!responses || responses.length === 0) {
     return <div>
-      <h3>No responses found for this form.</h3>
-      <Link to="/home">
-        <Button text="Back" className="btn--link" />
-      </Link>
+      <p>No responses found for this form.</p>
+        <Link to="/home">
+            <Button className="btn--primary" text="Back"/>
+        </Link>
     </div>;
   }
   const groupedResponses = responses.reduce((acc, response) => {
-
-    Object.keys(response).forEach((key) => {
-      if (key !== 'form_id') {
-        const sectionNumber = key;
-        if (!acc[sectionNumber]) {
-          acc[sectionNumber] = []; 
-        }
-        acc[sectionNumber].push(response[key]);
-      }
-    });
+    const { form_section_id, content } = response;
+    if (!acc[form_section_id]) {
+      acc[form_section_id] = [];
+    }
+    acc[form_section_id].push(content);
     return acc;
   }, {});
 
   return (
     <div>
-    <Link to="/home">
-      <Button text="Back" className="btn--link" />
-    </Link>
-    <h1>Form Responses</h1>
-    <h2>Total Responses: {totalResponses}</h2>
+      <Link to="/home">
+        <Button className="btn--primary" text="Back"/>
+      </Link>
+      <h1>Form Responses</h1>
+      <h2>{totalResponses} Questions Answered</h2>
+      <div className="responses-list">
+        {sections.map((section) => {
+          if (!groupedResponses[section.id]) return null;
 
-    <div className="responses-list">
-      {Object.keys(groupedResponses).map((sectionNumber) => (
-        <div key={sectionNumber} className="response-section">
-          <h3>Section {sectionNumber}</h3>
-          {groupedResponses[sectionNumber].map((response, index) => {
-            // get rid of quotes 
-            const parsedResponse = JSON.parse(response);
-            return <div key={index}>{parsedResponse}</div>;
-          })}
-        </div>
-      ))}
+          return (
+            <div key={section.id} className="response-section">
+              <h3>{section.label}</h3>
+              {groupedResponses[section.id].map((response, index) => (
+                <div key={index} className="response-content">
+                  {response}
+                </div>
+              ))}
+            </div>
+          );
+        })}
+      </div>
     </div>
-  </div>
-);
-
+  );
 }
