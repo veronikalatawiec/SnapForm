@@ -15,12 +15,12 @@ export default function Table() {
   const [showModal, setShowModal] = useState(false); 
   const [deleteFormId, setDeleteFormId] = useState(null); 
   const navigate = useNavigate();
-
+  const userId = getUserIdFromToken(); 
   // Fetch forms
   useEffect(() => {
     const fetchForms = async () => {
         try {
-          const userId = getUserIdFromToken(); 
+          // const userId = getUserIdFromToken(); 
           if (!userId) {
             setError('User not authenticated');
             return;
@@ -53,7 +53,7 @@ export default function Table() {
       
           const updatedStatus = !formToUpdate.status;
 
-          const userId = getUserIdFromToken();
+          // const userId = getUserIdFromToken();
           if (!userId) {
             throw new Error("No user ID found.");
           }
@@ -130,7 +130,7 @@ export default function Table() {
                     onToggle={() => handleToggle(form.form_id)} />
                 </div>
                 <div className="forms__data forms__data--mid">
-                  <Button text="View Responses" className="btn--link" onClick={() => navigate(`/form/responses/${form.form_id}`)} />
+                  <Button text="View Responses" className="btn--link" onClick={() => navigate(`/form/responses/${userId}/${form.form_id}`)} />
                   <LinkButton text="Copy Link" formId={form.form_id} className="btn--link" />
                 </div>
                 <div className="forms__data forms__data--bot">

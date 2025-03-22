@@ -44,7 +44,7 @@ export default function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/form/create" element={<FormCreatePage />} />
         <Route path="/form/edit/:id" element={<FormEditPage />} />
-        <Route path="/form/responses/:id" element={<FormResponsesPage />} />
+        <Route path="/form/responses/:user_id/:id" element={<FormResponsesPage />} />
   
       </Routes>
     </Router>
