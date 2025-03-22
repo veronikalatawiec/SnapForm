@@ -80,18 +80,19 @@ export default function SectionBuilder() {
 };
 
   return (
-    <div>
-      <h2>Create a Form</h2>
-      <form onSubmit={handleSubmit}>
-      <div>
-          <label htmlFor="formName">Form Name</label>
-          <input
+    <div className='builder'>
+      <h2 className='builder__title'>Create a Form</h2>
+      <form onSubmit={handleSubmit} className='builder__form'>
+      <div className='builder__name'>
+          <label htmlFor="formName" className='builder__label'>Form Name</label>
+          <input 
             id="formName"
             type="text"
             placeholder="Enter form name"
             value={formName}
             onChange={(e) => setFormName(e.target.value)}
             required
+            className='builder__input'
           />
         </div>
 
@@ -99,31 +100,33 @@ export default function SectionBuilder() {
           switch (section.type) {
             case 'header':
                 return (
-                    <div key={index}>
+                    <div key={index} className='builder__section'>
                         <input
                             type="text"
                             placeholder="Section Header"
                             value={section.label}
                             onChange={(e) => handleSectionChange(index, { ...section, label: e.target.value })}
                             required
+                            className='builder__input'
                         />
-                        <Button type="button" onClick={() => removeSection(index)} text="Delete" />
+                        <Button type="button" onClick={() => removeSection(index)} text="Delete" className='btn--delete' />
                     </div>
                 );
             case 'paragraph':
                 return (
-                <div key={index}>
+                <div key={index} className='builder__section'>
                     <textarea
                         placeholder="Paragraph text"
                         value={section.label}
                         onChange={(e) => handleSectionChange(index, { ...section, label: e.target.value })}
+                        className='builder__input builder__input--large'
                     />
                     <Button type="button" onClick={() => removeSection(index)} text="Delete" />
                 </div>
             );
             case 'shorttext':
               return (
-                <div key={index}>
+                <div key={index} className='builder__section'>
                     <ShortText
                         onChange={(newSection) => handleSectionChange(index, newSection)}
                         label={section.label}
@@ -134,7 +137,7 @@ export default function SectionBuilder() {
               );
             case 'longtext':
               return (
-                <div key={index}>
+                <div key={index} className='builder__section'>
                     <LongText
                         onChange={(newSection) => handleSectionChange(index, newSection)}
                         label={section.label}
@@ -146,7 +149,7 @@ export default function SectionBuilder() {
               );
             case 'checkbox':
               return (
-                <div key={index}>
+                <div key={index} className='builder__section'>
                     <Checkbox
                         onChange={(newSection) => handleSectionChange(index, newSection)}
                         label={section.label}
@@ -159,7 +162,7 @@ export default function SectionBuilder() {
               );
             case 'radio':
               return (
-                <div key={index}>
+                <div key={index} className='builder__section'>
                     <MultipleChoice
                         onChange={(newSection) => handleSectionChange(index, newSection)}
                         label={section.label}
@@ -174,11 +177,11 @@ export default function SectionBuilder() {
           }
         })}
 
-        <div>
+        <div className='builder__add-text'>
             <Button type="button" onClick={() => addSection('header')} text="Add A Header" className="btn--build"/>
             <Button type="button" onClick={() => addSection('paragraph')} text="Add A Paragraph" className="btn--build" />
         </div>
-        <div>
+        <div className='builder__add-sections'>
           <Button type="button" onClick={() => addSection('shorttext')} text="Add Short Text Question" className="btn--build"/>
           <Button type="button" onClick={() => addSection('longtext')} text="Add Long Text Question" className="btn--build"/>
           <Button type="button" onClick={() => addSection('checkbox')} text="Add Checkbox Question" className="btn--build"/>
@@ -189,14 +192,3 @@ export default function SectionBuilder() {
     </div>
   );
 }
-
-// export default function SectionBuilder() {
-//   return(
-//     <>
-//     <ShortText />
-//     <LongText />
-//     <MultipleChoice />
-//     <Checkbox />
-//     </>
-//   )
-// }
