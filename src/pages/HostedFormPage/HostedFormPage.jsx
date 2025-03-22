@@ -19,7 +19,6 @@ export default function HostedFormPage() {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/forms/live/${user_id}/${id}`);
         setForm(response.data); 
-        console.log(response.data)
       } catch (err) {
         setError('This form cannot be reached please try again later.');
         console.error(err);
@@ -28,14 +27,14 @@ export default function HostedFormPage() {
     fetchForm();
   }, [id, user_id]);
 
-  // Handle form submission WIP
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const responses = Object.keys(formData).map((sectionId) => ({
+    console.log(formData);
+    const responses = Object.entries(formData).map(([sectionId, content]) => ({
       form_section_id: parseInt(sectionId),
-      content: formData[sectionId],
+      content: JSON.stringify(content)
     }));
-
+  
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/forms/response/${user_id}/${id}`, {
         form_id: id,
@@ -66,7 +65,7 @@ export default function HostedFormPage() {
       [sectionId]: value,  
     }));
   };
-  //form section rendering
+
   const renderFormSections = () => {
     return form.sections.map((section, index) => {
       switch (section.type) {
@@ -88,7 +87,9 @@ export default function HostedFormPage() {
               key={index} 
               label={section.label} 
               placeholder={section.placeholder} 
-              onChange={(e) => handleInputChange(section.id, e.target.value)}
+              sectionId={section.id} 
+              value={formData[section.id] || ''}
+              onChange={(value) => handleInputChange(section.id, value)} 
             />
           );
         case 'longtext':
@@ -97,25 +98,30 @@ export default function HostedFormPage() {
               key={index} 
               label={section.label} 
               placeholder={section.placeholder} 
-              onChange={(e) => handleInputChange(section.id, e.target.value)}
+              value={formData[section.id] || ''}
+              onChange={(value) => handleInputChange(section.id, value)} 
             />
           );
         case 'radio':
           return (
             <MultiChoice 
-              key={index} 
+              key={index}
               label={section.label} 
               options={section.options} 
-              onChange={(e) => handleInputChange(section.id, e.target.value)}
+              sectionId={section.id} 
+              value={formData[section.id] || ''}
+              onChange={(value) => handleInputChange(section.id, value)}        
             />
           );
         case 'checkbox':
           return (
             <Check 
-              key={index} 
-              label={section.label} 
-              options={section.options} 
-              onChange={(e) => handleInputChange(section.id, e.target.value)}
+            key={index} 
+            label={section.label} 
+            options={section.options} 
+            sectionId={section.id} 
+            value={formData[section.id] || []}  
+            onChange={(value) => handleInputChange(section.id, value)}    
             />
           );
         default:

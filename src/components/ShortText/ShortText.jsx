@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ShortText.scss'
 
-export default function ShortText({ label, placeholder }) {
-  const [value, setValue] = useState('');
+export default function ShortText({ label, placeholder, value, onChange, sectionId }) {
 
   const handleChange = (e) => {
-    setValue(e.target.value);
+    const selectedValue = e.target.value;
+    onChange(selectedValue);
   };
 
   return (
@@ -16,6 +16,7 @@ export default function ShortText({ label, placeholder }) {
         placeholder={placeholder || 'Enter your answer'} 
         value={value} 
         onChange={handleChange} 
+        name={`section-${sectionId}`} 
       />
     </div>
   );

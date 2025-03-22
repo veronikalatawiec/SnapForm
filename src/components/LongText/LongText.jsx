@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './LongText.scss'
 
-export default function LongText({ label, placeholder }) {
-  const [value, setValue] = useState('');
+export default function LongText({ label, placeholder, value, onChange, sectionId }) {
 
   const handleChange = (e) => {
-    setValue(e.target.value);
+    const selectedValue = e.target.value;
+    onChange(selectedValue);
   };
 
   return (
@@ -15,6 +15,7 @@ export default function LongText({ label, placeholder }) {
         placeholder={placeholder || 'Enter your answer'} 
         value={value} 
         onChange={handleChange} 
+        name={`section-${sectionId}`} 
       />
     </div>
   );

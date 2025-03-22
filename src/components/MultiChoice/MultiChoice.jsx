@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './MultiChoice.scss'
 
-export default function MultiChoice({ label, options }) {
-  const [selectedOption, setSelectedOption] = useState('');
+export default function MultiChoice({ label, options, value, onChange, sectionId }) {
 
   const handleChange = (e) => {
-    setSelectedOption(e.target.value);
+    const selectedValue = e.target.value;
+    onChange(selectedValue);
   };
 
   return (
@@ -15,9 +15,9 @@ export default function MultiChoice({ label, options }) {
         <div key={index}>
           <input 
             type="radio" 
-            name={label} 
+            name={`section-${sectionId}`} 
             value={option} 
-            checked={selectedOption === option} 
+            checked={value === option} 
             onChange={handleChange} 
           />
           <label>{option}</label>

@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Check.scss';
 
-export default function Checkbox({ label, options }) {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+export default function Checkbox({ label, options, value, onChange, sectionId }) {
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setSelectedOptions((prevSelected) => 
-      prevSelected.includes(value) 
-        ? prevSelected.filter((option) => option !== value)
-        : [...prevSelected, value]
-    );
+const handleChange = (e) => {
+    const selectedOption = e.target.value;
+
+    const updatedValue = value.includes(selectedOption)
+      ? value.filter((v) => v !== selectedOption)
+      : [...value, selectedOption]; 
+
+    onChange(updatedValue);
   };
 
   return (
@@ -19,10 +19,11 @@ export default function Checkbox({ label, options }) {
       {options.map((option, index) => (
         <div key={index}>
           <input 
-            type="checkbox" 
-            value={option} 
-            checked={selectedOptions.includes(option)} 
-            onChange={handleChange} 
+            type="checkbox"
+            value={option}
+            checked={value.includes(option)} 
+            onChange={handleChange}
+            name={`section-${sectionId}`} 
           />
           <label>{option}</label>
         </div>
