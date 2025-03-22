@@ -30,7 +30,23 @@ export default function HostedFormPage() {
   // Handle form submission WIP
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const responses = Object.keys(formData).map((sectionId) => ({
+      form_section_id: parseInt(sectionId),
+      content: formData[sectionId],
+    }));
+
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/forms/response/${user_id}/${id}`, {
+        form_id: id,
+        responses: responses,
+      });
+      console.log('Form submitted successfully', response.data);
+    } catch (err) {
+      setError('Error submitting form.');
+      console.error('Form submission error:', err);
+    }
   };
+
   if (error) {
     return <div>{error}</div>;
   }
@@ -45,7 +61,7 @@ export default function HostedFormPage() {
   const handleInputChange = (sectionId, value) => {
     setFormData((prevData) => ({
       ...prevData,
-      [sectionId]: value,  // Store values by section ID
+      [sectionId]: value,  
     }));
   };
   //form section rendering
