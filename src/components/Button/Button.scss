@@ -3,7 +3,6 @@
 @use "../../styles/partials/variables" as *;
 
 .btn{
-    
     padding: .5rem $mobile-padding;
     border: none;
     border-radius: 100px;
@@ -33,10 +32,11 @@
     &--primary{
         transition:ease-in-out .25s;
         background-color: $secondary-blue;
-        border: 2px solid #ffffff00;
+        border: 2px solid #c8e1ff00;
         &:hover{
             scale: 1.02;
             box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+            background-color: $secondary-purple;
         }
     }
     &--secondary{
@@ -51,8 +51,15 @@
             border: 2px solid #ffffff00;
         }
     }
-    &__link{
-
+    &--link{
+        color: $secondary-grey;
+        background-color: #FFFFFF00;
+        padding:0;
+        transition:ease-in-out .25s;
+        @include type-small(300);
+        &:hover{
+            color:$primary-black;
+        }
     }
     &__delete{
 

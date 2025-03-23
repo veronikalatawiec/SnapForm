@@ -32,6 +32,7 @@
         @include type-body(300);
         color: $secondary-grey;
         padding-bottom: 1.5*$mobile-padding;
+        max-width: 50rem;
     }
 
 }
