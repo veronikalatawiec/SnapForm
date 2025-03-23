@@ -67,7 +67,7 @@ export default function FormResponsesPage() {
   }, {});
 
   return (
-    <div>
+    <div className="responses">
       <Link to="/home">
         <Button className="btn--primary" text="Back"/>
       </Link>

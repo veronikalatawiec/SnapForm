@@ -10,8 +10,9 @@ export default function LongText({ label, placeholder, value, onChange, sectionI
 
   return (
     <div className="form-section">
-      <label>{label}</label>
+      <label className="form-section__label">{label}</label>
       <textarea 
+        className="long-text__input"
         placeholder={placeholder || 'Enter your answer'} 
         value={value} 
         onChange={handleChange} 

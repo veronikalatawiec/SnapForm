@@ -5,6 +5,9 @@ import ShortText from '../../components/ShortText/ShortText.jsx';
 import LongText from '../../components/LongText/LongText.jsx';
 import MultiChoice from '../../components/MultiChoice/MultiChoice.jsx';
 import Check from '../../components/Check/Check.jsx';
+import Button from '../../components/Button/Button.jsx';
+import Logo from '../../assets/images/logo-light.svg';
+import './HostedFormPage.scss';
 
 export default function HostedFormPage() {
   const { id, user_id } = useParams();
@@ -49,15 +52,15 @@ export default function HostedFormPage() {
   };
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="form__error">{error}</div>;
   }
 
   if (!form) {
-    return <div>Loading...</div>;
+    return <div className="form__loading">Loading...</div>;
   }
 
   if (!form.form.status) {
-    return <div>This form is not currently accepting responses.</div>;
+    return <div className="form__notaccept">This form is not currently accepting responses.</div>;
   }
   const handleInputChange = (sectionId, value) => {
     setFormData((prevData) => ({
@@ -71,14 +74,14 @@ export default function HostedFormPage() {
       switch (section.type) {
         case 'header':
           return (
-            <div key={index} className="form-section">
-              <h2>{section.label}</h2>
+            <div key={index} >
+              <h2 className="form__header">{section.label}</h2>
             </div>
           );
         case 'paragraph':
           return (
-            <div key={index} className="form-section">
-              <p>{section.label}</p>
+            <div key={index} className="form__p-container">
+              <p className="form__paragraph">{section.label}</p>
             </div>
           );
         case 'shorttext':
@@ -131,12 +134,15 @@ export default function HostedFormPage() {
   };
 
   return (
-    <div>
-      <h2>{form.form.name}</h2>
-      <form onSubmit={handleSubmit}>
-        {renderFormSections()}
-        <button type="submit">Submit</button>
-      </form>
+    <div className="form__page">
+      <div className="form">
+        <h2 className="form__head">{form.form.name}</h2>
+        <form className="form__container" onSubmit={handleSubmit}>
+          {renderFormSections()}
+          <Button type="submit" text="Submit" className="btn--primary"/>
+        </form>
+      </div>
+      <img className="form__logo" src={Logo}/>
     </div>
   );
 }
