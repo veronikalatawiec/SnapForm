@@ -1,0 +1,42 @@
+@use "../../styles/partials/fonts";
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.form-create {
+  background-color: $primary-white;
+  width: 100%;
+  max-width: $desktop-break;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  @include tablet {
+    padding: 2rem $desktop-padding;
+    gap: 2rem;
+    max-width: $desktop-break;
+    margin: 0 auto;
+  }
+  &__page {
+    background-color: $primary-white;
+    min-height: 100vh;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    @include tablet {
+      padding: 2rem;
+      gap: 2rem;
+    }
+  }
+  &__h1 {
+    @include type-H1;
+    color: $primary-black;
+    text-align: left;
+  }
+  &__content {
+    width: 100%;
+  }
+}

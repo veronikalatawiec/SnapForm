@@ -1,6 +1,17 @@
-// After successful login (e.g., in your login function)
-// const token = "some-jwt-token"; // This would come from your backend response
-// localStorage.setItem('jwt', token);
+import jwt_decode from 'jwt-decode';
 
-// const token = localStorage.getItem('jwt');
-// console.log(token); // Logs the JWT or null if not found
+//get user id
+export function getUserIdFromToken() {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    console.error('No token found');
+    return null;
+  }
+  try {
+    const decodedToken = jwt_decode(token);
+    return decodedToken.id;
+  } catch (error) {
+    console.error('Error decoding token', error);
+    return null;
+  }
+}
