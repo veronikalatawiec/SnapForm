@@ -3,73 +3,73 @@
 @use "../../styles/partials/variables" as *;
 
 .form-section {
-    display:flex;
-    flex-direction: column;
-    width: 100%;
-    &__label {
-      @include type-button;
-      margin-bottom: .75rem;
-      display: block;
-      color:$secondary-grey;
-    }
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  &__label {
+    @include type-button;
+    margin-bottom: 0.75rem;
+    display: block;
+    color: $secondary-grey;
   }
-  
-  .checkbox {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    margin-bottom: 0.5rem;
-    user-select: none;
-    position: relative;
-    display:flex;
-    justify-content: flex-start;
-    align-items: center;
-    &__input {
-      position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
-      pointer-events: none;
-    }
-    
-    &__custom {
-      width: 1.25rem;
-      height: 1.25rem;
-      border: 2px solid $primary-black;
-      border-radius: 4px;       
-      background-color: $primary-light;
-      box-sizing: border-box;
-      margin-right: 8px;
-      position: relative;
-      transition:ease-in-out .25s;
-      &:hover{
-        background-color: $secondary-purple;
-      }
-    }
+}
 
-    &__input:checked + .checkbox__custom {
-        background-color: $secondary-green;
-    }
-    
-    &__custom::after {
-      content: "";
-      position: absolute;
-      display: none;
-    }
-    
-    &__input:checked + .checkbox__custom::after {
-      display: block;
-      left: 0.3125rem;
-      top: 1px;
-      width: 4px;
-      height: 0.5rem;
-      border: solid $primary-black;   
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-    }
-    
-    &__text {
-        @include type-body(300);
-        color:$primary-black;
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  user-select: none;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  &__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  &__custom {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid $primary-black;
+    border-radius: 4px;
+    background-color: $primary-light;
+    box-sizing: border-box;
+    margin-right: 8px;
+    position: relative;
+    transition: ease-in-out 0.25s;
+    &:hover {
+      background-color: $secondary-purple;
     }
   }
+
+  &__input:checked + .checkbox__custom {
+    background-color: $secondary-green;
+  }
+
+  &__custom::after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  &__input:checked + .checkbox__custom::after {
+    display: block;
+    left: 0.3125rem;
+    top: 1px;
+    width: 4px;
+    height: 0.5rem;
+    border: solid $primary-black;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  &__text {
+    @include type-body(300);
+    color: $primary-black;
+  }
+}

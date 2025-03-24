@@ -3,89 +3,95 @@
 @use "../../styles/partials/variables" as *;
 
 .responses {
-    background-color: $primary-white;
-    min-height: 100vh;
+  background-color: $primary-white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  width: 100%;
+  @include tablet {
+    padding: 2rem;
+    max-width: $desktop-break;
+    gap: 2rem;
+  }
+  &__page {
     display: flex;
     flex-direction: column;
-    align-items:flex-start;
-    gap: 1.5rem;
-    width:100%;
+    align-items: center;
+    height: fit-content;
+    padding: 1.25rem;
+    background-color: $primary-white;
     @include tablet {
-      padding: 2rem;
-      max-width: $desktop-break;
-      gap: 2rem;
-    }
-    &__page{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height:fit-content;
-        padding:1.25rem;
-        background-color: $primary-white;
-        @include tablet{
-            padding: 2rem $desktop-padding;
-            margin:auto;
-        }
-    }
-  
-    &__h1 {
-      @include type-H1;
-      color: $primary-black;
-      text-align: left;
-      margin: 0 1rem;
-      @include tablet {
-        margin:2rem;
-      }
-    }
-    &__h2{
-        @include type-H2;
-        color: $primary-black;
-        margin: 0 1rem .75rem 1rem;
-        @include tablet{
-        margin:0 2rem 1.5rem 2rem;
-      }
-    }
-    &__h3{
-        @include type-H3;
-        color: $secondary-grey;
-        margin: 0 1rem .75rem 1rem;
-        @include tablet{
-        margin:0 2rem 1.5rem 2rem;
-      }
-    }
-    &__section {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        margin: 0 1rem;
-        @include tablet{
-          margin:2rem;
-        }
-      }
-
-    &__response-p{
-        @include type-small(300);
-        color: $secondary-grey;
-        background-color: $primary-light;
-        border-radius: 200px;
-        padding:1rem 2rem;
-        margin-bottom: 1rem;
-    }
-  
-    &__label {
-      @include type-body(400);
-      color: $primary-black;
-      border-bottom: 2px solid $secondary-purple;
-      width: fit-content;
-      padding-bottom: 0.25rem;
-      margin: 0;
-    }
-
-    &__error,
-    &__no-responses {
-      @include type-H3;
-      color: $primary-black;
-      text-align: center;
-      padding: 1rem;
+      padding: 2rem $desktop-padding;
+      margin: auto;
     }
   }
+
+  &__h1 {
+    @include type-H1;
+    color: $primary-black;
+    text-align: left;
+    margin: 0 1rem;
+    @include tablet {
+      margin: 2rem;
+    }
+  }
+  &__h2 {
+    @include type-H2;
+    color: $primary-black;
+    margin: 0 1rem 0.75rem 1rem;
+    @include tablet {
+      margin: 0 2rem 1.5rem 2rem;
+    }
+  }
+  &__h3 {
+    @include type-H3;
+    color: $secondary-grey;
+    margin: 0 1rem 0.75rem 1rem;
+    @include tablet {
+      margin: 0 2rem 1.5rem 2rem;
+    }
+  }
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0 1rem;
+    @include tablet {
+      margin: 2rem;
+    }
+  }
+
+  &__response-p {
+    @include type-small(300);
+    color: $secondary-grey;
+    background-color: $primary-light;
+    border-radius: 200px;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__label {
+    @include type-body(400);
+    color: $primary-black;
+    border-bottom: 2px solid $secondary-purple;
+    width: fit-content;
+    padding-bottom: 0.25rem;
+    margin: 0;
+  }
+
+  &__error,
+  &__no-responses {
+    @include type-H3;
+    color: $primary-black;
+    text-align: center;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 2rem;
+  }
+}

@@ -2,65 +2,47 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.footer{
-    background-color: $primary-light;
-    // display: flex;
-    // align-items: center;
-    // justify-content: space-around;
-    width:100%;
-    &__content{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        @include padding-default;
-        @include tablet{
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        @include desktop{
-            padding:2rem $desktop-padding;
-            max-width: $desktop-break;
-            margin: 0 auto;
-        }
+.footer {
+  background-color: $primary-light;
+  width: 100%;
+  &__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    @include padding-default;
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
     }
-    &__logo{
-        width: 4rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    @include desktop {
+      padding: 2rem $desktop-padding;
+      max-width: $desktop-break;
+      margin: 0 auto;
     }
-    &__linkedin{
-        color:$primary-black;
-        padding: .5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width:3.75rem;
-        transition:ease-in-out .25s;
-        &:hover{
-            scale: 1.02;
-        }
+  }
+  &__logo {
+    width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__linkedin {
+    color: $primary-black;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.75rem;
+    transition: ease-in-out 0.25s;
+    &:hover {
+      scale: 1.02;
     }
-    &__text{
-        @include type-small(300);
-        font-size: .75rem;
-        color:$secondary-grey;
-        text-align: center;
-    }
+  }
+  &__text {
+    @include type-small(300);
+    font-size: 0.75rem;
+    color: $secondary-grey;
+    text-align: center;
+  }
 }
-// &__content{
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     gap: 1.5*$mobile-padding;
-//     @include padding-default;
-//     @include tablet{
-//         flex-direction: row;
-//         justify-content: space-between;
-//     }
-//     @include desktop{
-//         padding:2rem $desktop-padding;
-//         max-width: $desktop-break;
-//         margin: 0 auto;
-//     }

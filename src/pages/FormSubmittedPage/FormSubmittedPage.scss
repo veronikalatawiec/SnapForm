@@ -3,85 +3,85 @@
 @use "../../styles/partials/variables" as *;
 
 body {
-    background-color: $primary-light;
+  background-color: $primary-light;
+}
+
+.submitted {
+  width: fit-content;
+  background-color: $primary-white;
+  padding: 3rem 2rem;
+  border-radius: 1.25rem;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+
+  @include tablet {
+    padding: 5rem 8rem;
+    max-width: 62.5rem;
   }
-  
-  .submitted {
-    width: fit-content;
-    background-color: $primary-white;
-    padding: 3rem 2rem;
-    border-radius: 1.25rem;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-    margin: 2rem auto;
+  &__page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap:1.5rem;
-  
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    padding: 2rem;
     @include tablet {
-      padding: 5rem 8rem;
-      max-width: 62.5rem;
+      padding: 4rem 4rem;
     }
-    &__page{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        position: relative;
-        padding:2rem;
-        @include tablet{
-            padding: 4rem 4rem;
-        }
-    }
-    &__img{
+  }
+  &__img {
     padding: 0.25rem;
     background-color: $secondary-green;
     width: fit-content;
     border-radius: 200px;
     margin-bottom: 1rem;
-    }
-    &__icon{
-        width:2.5rem;
-    }
-    &__head {
-      @include type-H2;
-      color: $primary-black;
-      border-bottom: 4px solid $secondary-purple;
-      padding-bottom: 0.5rem;
-      width: fit-content;
-      margin: 0 auto 1.5rem;
-      text-align: center;
-    }
-  
-    &__text {
-      @include type-body(400);
-      color: $primary-black;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-  
-    &__cta {
-    position:absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-      bottom: 4rem;
-    }
-  
-    &__prompt {
-      @include type-body(300);
-      color: $secondary-grey;
-      text-align: center;
-      width:100%;
-      padding:0 2rem;
-        @include tablet{
-            padding: 0 4rem;
-        }
-    }
-    &__logo{
-        margin-top:2rem;
-        width:8rem;
+  }
+  &__icon {
+    width: 2.5rem;
+  }
+  &__head {
+    @include type-H2;
+    color: $primary-black;
+    border-bottom: 4px solid $secondary-purple;
+    padding-bottom: 0.5rem;
+    width: fit-content;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+  }
+
+  &__text {
+    @include type-body(400);
+    color: $primary-black;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  &__cta {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    bottom: 4rem;
+  }
+
+  &__prompt {
+    @include type-body(300);
+    color: $secondary-grey;
+    text-align: center;
+    width: 100%;
+    padding: 0 2rem;
+    @include tablet {
+      padding: 0 4rem;
     }
   }
+  &__logo {
+    margin-top: 2rem;
+    width: 8rem;
+  }
+}

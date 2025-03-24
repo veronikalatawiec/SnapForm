@@ -2,41 +2,41 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.btn{
-    &__text{
-        @include type-button;
+.btn {
+  &__text {
+    @include type-button;
+  }
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &--icon {
+    &-right {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
     }
-    &__icon{
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    &--only {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 500px;
+      padding: 0 !important;
     }
-    &--icon{
-        &-right{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 1rem;
-        }
-        &--only{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 500px;
-            padding:0 !important;
-        }
+  }
+  &--primary {
+    padding: 0.5rem $mobile-padding;
+    border: none;
+    border-radius: 100px;
+    transition: ease-in-out 0.25s;
+    background-color: $secondary-blue;
+    border: 2px solid #c8e1ff00;
+    &:hover {
+      scale: 1.02;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+      background-color: $secondary-purple;
     }
-    &--primary{
-        padding: .5rem $mobile-padding;
-        border: none;
-        border-radius: 100px;
-        transition:ease-in-out .25s;
-        background-color: $secondary-blue;
-        border: 2px solid #c8e1ff00;
-        &:hover{
-            scale: 1.02;
-            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-            background-color: $secondary-purple;
-        }
-    }
+  }
 }

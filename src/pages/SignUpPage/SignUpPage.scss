@@ -2,57 +2,57 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.sign-up{
-    background-color: $primary-white;
-    width:100%;
-    max-width: 400px;
-    padding: 3rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap:2rem;
-    border-radius: 8%;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-    z-index:2;
-    @include tablet{
-        padding:4rem 6rem;
-        width:fit-content;
-        max-width: none;
-    }
-    &__page{
-    padding:1.75rem;
+.sign-up {
+  background-color: $primary-white;
+  width: 100%;
+  max-width: 400px;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 8%;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  @include tablet {
+    padding: 4rem 6rem;
+    width: fit-content;
+    max-width: none;
+  }
+  &__page {
+    padding: 1.75rem;
     position: relative;
     background-color: $primary-light;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
-    height:100vh;
-    }
-    &__head{
+    justify-content: center;
+    height: 100vh;
+  }
+  &__head {
     @include type-H1;
     text-align: center;
-    }
-    &__form{
+  }
+  &__form {
     display: flex;
     flex-direction: column;
-    gap:1.25rem;
-    @include tablet{
-        gap:2rem;
+    gap: 1.25rem;
+    @include tablet {
+      gap: 2rem;
     }
-    }
-    &__sign-in{
+  }
+  &__sign-in {
     display: flex;
-    gap:.5rem;
-    align-items: end
-    }
-    &__text{
+    gap: 0.5rem;
+    align-items: end;
+  }
+  &__text {
     @include type-body(300);
     color: $primary-black;
-    }
-    &__logo{
-        width: 8rem;
-        position: absolute;
-        bottom: 3rem;
-        z-index:1;
-    }
+  }
+  &__logo {
+    width: 8rem;
+    position: absolute;
+    bottom: 3rem;
+    z-index: 1;
+  }
 }

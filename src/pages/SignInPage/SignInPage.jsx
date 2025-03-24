@@ -1,32 +1,34 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Input from '../../components/Input/Input.jsx';
-import Button from '../../components/Button/Button.jsx';
-import Logo from '../../assets/images/logo-light.svg';
-import './SignInPage.scss';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Input from "../../components/Input/Input.jsx";
+import Button from "../../components/Button/Button.jsx";
+import Logo from "../../assets/images/logo-light.svg";
+import "./SignInPage.scss";
 
-export default function SignInPage(){
+export default function SignInPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/login`, {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/users/login`,
+        {
+          email,
+          password,
+        }
+      );
       const { token } = response.data;
       console.log(token);
-      // Store the JWT 
-      localStorage.setItem('token', token);
-      navigate('/home'); 
+      localStorage.setItem("token", token);
+      navigate("/home");
     } catch (err) {
-      console.error('Error during sign-in:', err); 
+      console.error("Error during sign-in:", err);
       setError(err);
     }
   };
@@ -52,26 +54,19 @@ export default function SignInPage(){
             required
             placeholder="Enter your password"
           />
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          <Button
-            className="btn--primary"
-            type="submit"
-            text="Sign In"
-          />
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <Button className="btn--primary" type="submit" text="Sign In" />
         </form>
         <div className="sign-in__sign-up">
-          <p className="sign-in__text">
-            Don't have an account?{' '}
-          </p>
+          <p className="sign-in__text">Don't have an account? </p>
           <Button
-              className="btn--link"
-              onClick={() => navigate('/signup')}
-              text="Sign up"
-            />
+            className="btn--link"
+            onClick={() => navigate("/signup")}
+            text="Sign up"
+          />
         </div>
       </div>
-      <img src={Logo} className="sign-in__logo"/>
+      <img src={Logo} className="sign-in__logo" />
     </div>
-   
   );
-};
+}

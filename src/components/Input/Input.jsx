@@ -1,11 +1,19 @@
-import React from 'react';
-import './Input.scss'
+import React from "react";
+import "./Input.scss";
 
-export default function Input({ label, type, value, onChange, required, placeholder }){
+export default function Input({
+  label,
+  type,
+  value,
+  onChange,
+  required,
+  placeholder,
+}) {
   return (
     <div className="input">
       {label && <label className="input__label">{label}</label>}
-      <input className="input__field"
+      <input
+        className="input__field"
         type={type}
         value={value}
         onChange={onChange}
@@ -14,4 +22,4 @@ export default function Input({ label, type, value, onChange, required, placehol
       />
     </div>
   );
-};
+}

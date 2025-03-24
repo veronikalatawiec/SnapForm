@@ -1,5 +1,5 @@
-import React from 'react';
-import './Button.scss';
+import React from "react";
+import "./Button.scss";
 
 export default function Button({
   className,
@@ -35,13 +35,14 @@ export default function Button({
   } else if (iconPosition === "icon-only") {
     content = icon && <span className="btn__icon">{icon}</span>;
   } else {
-    // Default: text only (or any custom arrangement)
     content = <span className="btn__text">{text}</span>;
   }
 
   return (
     <button
-      className={`btn ${className} ${iconPosition ? `btn--${iconPosition}` : ""}`}
+      className={`btn ${className} ${
+        iconPosition ? `btn--${iconPosition}` : ""
+      }`}
       onClick={onClick}
       type={type}
     >
@@ -49,5 +50,3 @@ export default function Button({
     </button>
   );
 }
-
-//note have link, delete, primary, secondary, disabled and BUILD

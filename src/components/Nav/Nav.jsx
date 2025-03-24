@@ -1,8 +1,8 @@
-import React from 'react';
-import Button from '../../components/Button/Button';
-import Logo from '../../assets/images/logo-dark.svg'
-import { Link } from 'react-router-dom';
-import './Nav.scss'
+import React from "react";
+import Button from "../../components/Button/Button";
+import Logo from "../../assets/images/logo-dark.svg";
+import { Link } from "react-router-dom";
+import "./Nav.scss";
 
 export default function Nav({ type }) {
   if (type === "landing") {

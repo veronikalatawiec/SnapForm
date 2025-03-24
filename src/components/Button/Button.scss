@@ -2,119 +2,119 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.btn{
-    // padding: .5rem 2rem;
-    border: none;
-    &__text{
-        @include type-button;
+.btn {
+  border: none;
+  &__text {
+    @include type-button;
+  }
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &--icon {
+    &-right {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
     }
-    &__icon{
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    &--only {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 500px;
+      padding: 0;
     }
-    &--icon{
-        &-right{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 1rem;
-        }
-        &--only{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 500px;
-            padding:0;
-        }
-        &--top{ 
-            background-color: $secondary-purple;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-radius: .5rem;}
+    &--top {
+      background-color: $secondary-purple;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.5rem;
     }
-    &--primary{
-        border-radius: 100px;
-        padding: .5rem 2rem;
-        transition:ease-in-out .25s;
-        background-color: $secondary-blue;
-        border: 2px solid #c8e1ff00;
-        &:hover{
-            scale: 1.02;
-            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-            background-color: $secondary-purple;
-        }
+  }
+  &--primary {
+    border-radius: 100px;
+    padding: 0.5rem 2rem;
+    transition: ease-in-out 0.25s;
+    background-color: $secondary-blue;
+    border: 2px solid #c8e1ff00;
+    &:hover {
+      scale: 1.02;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+      background-color: $secondary-purple;
     }
-    &--secondary{
-        border-radius: 100px;
-        padding: .5rem 2rem;
-        background-color: $primary-black;
-        transition:ease-in-out .25s;
-        color: $secondary-blue;
-        border: 2px solid $secondary-purple;
-        &:hover{
-            scale: 1.02;
-            background-color: $secondary-green;
-            color: $primary-black;
-            border: 2px solid #ffffff00;
-        }
+  }
+  &--secondary {
+    border-radius: 100px;
+    padding: 0.5rem 2rem;
+    background-color: $primary-black;
+    transition: ease-in-out 0.25s;
+    color: $secondary-blue;
+    border: 2px solid $secondary-purple;
+    &:hover {
+      scale: 1.02;
+      background-color: $secondary-green;
+      color: $primary-black;
+      border: 2px solid #ffffff00;
     }
-    &--link{
-        color: $secondary-grey;
-        background-color: #FFFFFF00;
-        padding:0;
-        padding-bottom:.5rem;
-        border-bottom: 2px solid $secondary-blue;
-        border-radius: 0;
-        transition:ease-in-out .25s;
-        flex-direction: row;
-        @include type-small(300);
-        fill: $secondary-grey;
-        &:hover{
-            color:$primary-black;
-            cursor: pointer;
-        }
+  }
+  &--link {
+    color: $secondary-grey;
+    background-color: #ffffff00;
+    padding: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid $secondary-blue;
+    border-radius: 0;
+    transition: ease-in-out 0.25s;
+    flex-direction: row;
+    @include type-small(300);
+    fill: $secondary-grey;
+    &:hover {
+      color: $primary-black;
+      cursor: pointer;
     }
-    &--delete{
-        border-radius: 100px;
-        background-color: $secondary-purple;
-        padding: 1rem;
-        transition:ease-in-out .25s;
-        &:hover{
-            scale: 1.01;
-            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-            background-color: $secondary-purple;
-        }
+  }
+  &--delete {
+    border-radius: 100px;
+    background-color: $secondary-purple;
+    padding: 1rem;
+    transition: ease-in-out 0.25s;
+    &:hover {
+      scale: 1.01;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+      background-color: $secondary-purple;
     }
-    &--add{
-        border-radius: 100px;
-        background-color: $secondary-blue;
-        padding: 1rem;
-        transition:ease-in-out .25s;
-        &:hover{
-            scale: 1.01;
-            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-            background-color: $secondary-green;
-        }
+  }
+  &--add {
+    border-radius: 100px;
+    background-color: $secondary-blue;
+    padding: 1rem;
+    transition: ease-in-out 0.25s;
+    &:hover {
+      scale: 1.01;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+      background-color: $secondary-green;
     }
-    &--build{
-        background-color: $secondary-purple;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition:ease-in-out .25s;
-        border-radius: .5rem;
-        padding:1rem;
-        gap:0.5rem;
-        height: auto;
-        @include type-small(300);
-        &:hover{
-            scale: 1.01;
-            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-            background-color: $secondary-green;
-        }
+  }
+  &--build {
+    background-color: $secondary-purple;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: ease-in-out 0.25s;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    gap: 0.5rem;
+    height: auto;
+    @include type-small(300);
+    &:hover {
+      scale: 1.01;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+      background-color: $secondary-green;
     }
+  }
 }
