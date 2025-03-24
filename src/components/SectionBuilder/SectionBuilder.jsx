@@ -5,9 +5,16 @@ import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import ShortText from '../SectionShortText/SectionShortText.jsx';
 import LongText from '../SectionLongText/SectionLongText.jsx';
-import MultipleChoice from '../SectionMultiChoice/SectionMultiChoice.jsx';
+import MultiChoice from '../SectionMultiChoice/SectionMultiChoice.jsx';
 import Checkbox from '../SectionCheck/SectionCheck.jsx'
 import Button from '../Button/Button.jsx';
+import Delete from '../../assets/images/icon_delete.svg';
+import Header from '../../assets/images/icon_header.svg';
+import Paragraph from '../../assets/images/icon_paragraph.svg';
+import Text from '../../assets/images/icon_text.svg';
+import MChoice from '../../assets/images/icon_radio.svg';
+import Checkb from '../../assets/images/icon_check-box.svg';
+import './SectionBuilder.scss'
 
 export default function SectionBuilder() {
   // Sstore sections
@@ -81,7 +88,6 @@ export default function SectionBuilder() {
 
   return (
     <div className='builder'>
-      <h2 className='builder__title'>Create a Form</h2>
       <form onSubmit={handleSubmit} className='builder__form'>
       <div className='builder__name'>
           <label htmlFor="formName" className='builder__label'>Form Name</label>
@@ -103,25 +109,25 @@ export default function SectionBuilder() {
                     <div key={index} className='builder__section'>
                         <input
                             type="text"
-                            placeholder="Section Header"
+                            placeholder="Add a header"
                             value={section.label}
                             onChange={(e) => handleSectionChange(index, { ...section, label: e.target.value })}
                             required
                             className='builder__input'
                         />
-                        <Button type="button" onClick={() => removeSection(index)} text="Delete" className='btn--delete' />
+                        <Button type="button" onClick={() => removeSection(index)} text="Delete" className='btn--delete' iconPosition="icon-only" icon={<img src={Delete} alt="Delete"/>}/>
                     </div>
                 );
             case 'paragraph':
                 return (
                 <div key={index} className='builder__section'>
                     <textarea
-                        placeholder="Paragraph text"
+                        placeholder="Add a paragraph"
                         value={section.label}
                         onChange={(e) => handleSectionChange(index, { ...section, label: e.target.value })}
                         className='builder__input builder__input--large'
                     />
-                    <Button type="button" onClick={() => removeSection(index)} text="Delete" />
+                    <Button type="button" onClick={() => removeSection(index)} text="Delete" className='btn--delete' iconPosition="icon-only" icon={<img src={Delete} alt="Delete"/>}/>
                 </div>
             );
             case 'shorttext':
@@ -132,7 +138,7 @@ export default function SectionBuilder() {
                         label={section.label}
                         placeholder={section.placeholder}
                     />
-                    <Button type="button" onClick={() => removeSection(index)} text="Delete" className="btn--delete" icon='' />
+                    <Button type="button" onClick={() => removeSection(index)} text="Delete" className='btn--delete' iconPosition="icon-only" icon={<img src={Delete} alt="Delete"/>}/>
                 </div>
               );
             case 'longtext':
@@ -143,7 +149,7 @@ export default function SectionBuilder() {
                         label={section.label}
                         placeholder={section.placeholder}
                     />
-                    <Button type="button" onClick={() => removeSection(index)} text="Delete" className="btn--delete" icon='' />
+                    <Button type="button" onClick={() => removeSection(index)} text="Delete" className='btn--delete' iconPosition="icon-only" icon={<img src={Delete} alt="Delete"/>}/>
                 </div>
                 
               );
@@ -156,20 +162,20 @@ export default function SectionBuilder() {
                         placeholder={section.placeholder}
                         options={section.options}
                     />
-                    <Button type="button" onClick={() => removeSection(index)} text="Delete" className="btn--delete" icon='' />
+                     <Button type="button" onClick={() => removeSection(index)} text="Delete" className='btn--delete' iconPosition="icon-only" icon={<img src={Delete} alt="Delete"/>}/>
                 </div>
                 
               );
             case 'radio':
               return (
                 <div key={index} className='builder__section'>
-                    <MultipleChoice
+                    <MultiChoice
                         onChange={(newSection) => handleSectionChange(index, newSection)}
                         label={section.label}
                         placeholder={section.placeholder}
                         options={section.options}
                     />
-                    <Button type="button" onClick={() => removeSection(index)} text="Delete" className="btn--delete" icon='' />
+                    <Button type="button" onClick={() => removeSection(index)} text="Delete" className='btn--delete' iconPosition="icon-only" icon={<img src={Delete} alt="Delete"/>}/>
                 </div>
               );
             default:
@@ -177,15 +183,13 @@ export default function SectionBuilder() {
           }
         })}
 
-        <div className='builder__add-text'>
-            <Button type="button" onClick={() => addSection('header')} text="Add A Header" className="btn--build"/>
-            <Button type="button" onClick={() => addSection('paragraph')} text="Add A Paragraph" className="btn--build" />
-        </div>
         <div className='builder__add-sections'>
-          <Button type="button" onClick={() => addSection('shorttext')} text="Add Short Text Question" className="btn--build"/>
-          <Button type="button" onClick={() => addSection('longtext')} text="Add Long Text Question" className="btn--build"/>
-          <Button type="button" onClick={() => addSection('checkbox')} text="Add Checkbox Question" className="btn--build"/>
-          <Button type="button" onClick={() => addSection('radio')} text="Add Multiple Choice Question" className="btn--build"/>
+          <Button type="button" onClick={() => addSection('header')} text="Add A Header" className="btn--build" iconPosition="icon-top" icon={<img src={Header} alt="H"/>}/>
+          <Button type="button" onClick={() => addSection('paragraph')} text="Add A Paragraph" className="btn--build" iconPosition="icon-top" icon={<img src={Paragraph} alt="P"/>}/>
+          <Button type="button" onClick={() => addSection('shorttext')} text="Add Short Text Question" className="btn--build" iconPosition="icon-top" icon={<img src={Text} alt="T"/>}/>
+          <Button type="button" onClick={() => addSection('longtext')} text="Add Long Text Question" className="btn--build" iconPosition="icon-top" icon={<img src={Text} alt="T"/>}/>
+          <Button type="button" onClick={() => addSection('checkbox')} text="Add Checkbox Question" className="btn--build" iconPosition="icon-top" icon={<img src={MChoice} alt="M"/>}/>
+          <Button type="button" onClick={() => addSection('radio')} text="Add Multiple Choice Question" className="btn--build" iconPosition="icon-top" icon={<img src={Checkb} alt="C"/>}/>
         </div>
         <Button type="submit" text="Create my Form" className="btn--primary"/>
       </form>

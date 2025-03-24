@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Input from '../Input/Input.jsx'
 import './SectionShortText.scss';
 
 export default function SectionShortText({ onChange}) {
@@ -14,7 +15,7 @@ export default function SectionShortText({ onChange}) {
     <div className='short-text'>
       <input
         type="text"
-        placeholder="Add a label"
+        placeholder="What would you like to ask?"
         value={label}
         onChange={handleLabelChange}
         required

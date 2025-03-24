@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../../components/Button/Button';
 import LinkedIn from '../../assets/images/icon_linkedin.svg'
+import Logo from '../../assets/images/logo-light.svg'
 import './Footer.scss'
 
 export default function Footer(){
@@ -8,7 +8,7 @@ export default function Footer(){
     <div className="footer">
         <div className="footer__content">
             <div className="footer__logo">
-                <img src="../src/assets/images/mark-light.svg" className="footer__logo"/>
+                <img src={Logo} className="footer__logo"/>
             </div>
             <div className="footer__text">
                 <p>

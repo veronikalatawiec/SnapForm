@@ -1,6 +1,8 @@
 import './SectionMultiChoice.scss';
 import React, { useState } from 'react';
 import Button from '../Button/Button';
+import Add from '../../assets/images/icon_add.svg'
+import Remove from '../../assets/images/icon_x.svg'
 
 export default function MultipleChoiceInput({ onChange }) {
   const [label, setLabel] = useState('');
@@ -31,29 +33,46 @@ export default function MultipleChoiceInput({ onChange }) {
 
   return (
     <div className='multi-choice'>
-      <input
-        type="text"
-        placeholder="Label"
-        value={label}
-        onChange={handleLabelChange}
-        required
-        className='multi-choice__label'
-      />
-      {options.map((option, index) => (
+      <div className='multi-choice__inputs'>
         <input
-          key={index}
           type="text"
-          value={option}
-          onChange={(e) => handleOptionChange(index, e)}
-          placeholder={`Option ${index + 1}`}
+          placeholder="What would you like to ask?"
+          value={label}
+          onChange={handleLabelChange}
           required
-          className='multi-choice__option'
+          className='multi-choice__label'
         />
-      ))}
-      <Button type="button" onClick={addOption} text="Add Option" className="btn--secondary"/>
-      {options.length > 1 && (
-        <Button type="button" onClick={removeLast} text="Remove Option" className="btn--delete" icon=""/>
-      )}
+        {options.map((option, index) => (
+          <input
+            key={index}
+            type="text"
+            value={option}
+            onChange={(e) => handleOptionChange(index, e)}
+            placeholder={`Option ${index + 1}`}
+            required
+            className='multi-choice__option'
+          />
+        ))}
+        <div className="multi-choice__btns">
+          <Button 
+            type="button" 
+            onClick={addOption} 
+            icon={<img src={Add} alt="Add Option" />}
+            iconPosition="icon-only" 
+            className="btn--add"/>
+          {options.length > 1 && (
+            <Button 
+              type="button" 
+              onClick={removeLast} 
+              icon={<img src={Remove} alt="Remove Option" />}
+              iconPosition="icon-only" 
+              className="btn--delete"
+            />
+            )}
+        </div>
+
+      </div>
+      
     </div>
   );
 }

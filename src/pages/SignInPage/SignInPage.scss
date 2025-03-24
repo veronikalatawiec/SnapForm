@@ -12,7 +12,7 @@
     gap:2rem;
     border-radius: 8%;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
+    z-index:2;
     @include tablet{
         padding:4rem 6rem;
         width:fit-content;
@@ -26,6 +26,7 @@
     align-items: center;
     justify-content: center; 
     height:100vh;
+    position: relative;
     }
     &__head{
     @include type-H1;
@@ -51,6 +52,7 @@
     &__logo{
         width: 8rem;
         position: absolute;
-        bottom: 2rem;
+        bottom: 3rem;
+        z-index:1;
     }
 }

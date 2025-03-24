@@ -1,6 +1,8 @@
 import './SectionCheck.scss';
 import React, { useState } from 'react';
 import Button from '../Button/Button';
+import Add from '../../assets/images/icon_add.svg'
+import Remove from '../../assets/images/icon_x.svg'
 
 export default function CheckboxInput({ onChange }) {
   const [label, setLabel] = useState('');
@@ -28,14 +30,15 @@ export default function CheckboxInput({ onChange }) {
   };
 
   return (
-    <div className='checkbox'>
-      <input
+    <div className='checkbox-section'>
+      <div className='checkbox-section__inputs'>
+        <input
         type="text"
-        placeholder="Label"
+        placeholder="What would you like to ask?"
         value={label}
         onChange={handleLabelChange}
         required
-        className="checkbox__placeholder"
+        className="checkbox-section__label"
       />
       {options.map((option, index) => (
         <div key={index}>
@@ -45,14 +48,30 @@ export default function CheckboxInput({ onChange }) {
             onChange={(e) => handleOptionChange(index, e)}
             placeholder={`Option ${index + 1}`}
             required
-            className="checkbox__option"
+            className="checkbox-section__option"
           />
         </div>
       ))}
-      <Button type="button" onClick={addOption} text="Add Checkbox" className="btn--secondary"/>
+      <div className='checkbox-section__btns'>
+      <Button 
+                  type="button" 
+                  onClick={addOption} 
+                  icon={<img src={Add} alt="Add Option" />}
+                  iconPosition="icon-only" 
+                  className="btn--add"/>
+
           {options.length > 1 && (
-            <Button type="button" onClick={removeLast} text="Remove Checkbox" className="btn--delete" icon=""/>
+            <Button 
+              type="button" 
+              onClick={removeLast} 
+              icon={<img src={Remove} alt="Remove Option" />}
+              iconPosition="icon-only" 
+              className="btn--delete"
+            />
           )}
+          </div>
+      </div>
+      
     </div>
   );
 }

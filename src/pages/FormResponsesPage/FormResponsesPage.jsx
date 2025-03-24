@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
+import Nav from '../../components/Nav/Nav';
 import axios from 'axios';
 import './FormResponsesPage.scss';
 
 export default function FormResponsesPage() {
   const { user_id, id } = useParams();
   const [responses, setResponses] = useState([]);
+  const [formName, setFormName] = useState([]);
   const [totalResponses, setTotalResponses] = useState(0);
   const [error, setError] = useState('');
   const [sections, setSections] = useState([]);
@@ -37,6 +39,7 @@ export default function FormResponsesPage() {
           `${import.meta.env.VITE_API_URL}/forms/live/${user_id}/${id}`
         );
         setSections(response.data.sections);
+        setFormName(response.data.form.name);
       } catch (err) {
         setError('Error fetching form sections');
         console.error(err);
@@ -45,12 +48,18 @@ export default function FormResponsesPage() {
     fetchForm();
   }, [user_id, id]);
 
+  //TO FIX, it was late so i just got 1 form by mistake, i need to get all forms and remap.
+
   if (error) {
-    return <div>{error}</div>;
+    return <div className="responses__error">{error} 
+    <Link to="/home">
+      <Button className="btn--primary" text="Back"/>
+    </Link>
+    </div>;
   }
 
   if (!responses || responses.length === 0) {
-    return <div>
+    return <div className="responses_no-responses">
       <p>No responses found for this form.</p>
         <Link to="/home">
             <Button className="btn--primary" text="Back"/>
@@ -67,22 +76,31 @@ export default function FormResponsesPage() {
   }, {});
 
   return (
+    <>
+    <Nav />
+    <div className="responses__page">
     <div className="responses">
       <Link to="/home">
         <Button className="btn--primary" text="Back"/>
       </Link>
-      <h1>Form Responses</h1>
-      <h2>{totalResponses} Questions Answered</h2>
-      <div className="responses-list">
+      <h1 className="responses__h1">Form Responses</h1>
+      <div className="responses__list">
+        <h2 className="responses__h2">{formName}</h2>
+        <h3 className="responses__h3">{totalResponses} Questions Answered</h3>
         {sections.map((section) => {
+          
           if (!groupedResponses[section.id]) return null;
 
           return (
-            <div key={section.id} className="response-section">
-              <h3>{section.label}</h3>
+            <div key={section.id} className="responses__section">
+              <h3 className="responses__label">{section.label}</h3>
               {groupedResponses[section.id].map((response, index) => (
-                <div key={index} className="response-content">
-                  {response}
+                <div key={index} className="responses__content">
+                  <p className="responses__response-p">
+                  {typeof response === 'string'
+                    ? response.replace(/^[\["']+|[\]"']+$/g, '')
+                    : response}
+                  </p>
                 </div>
               ))}
             </div>
@@ -90,5 +108,7 @@ export default function FormResponsesPage() {
         })}
       </div>
     </div>
+    </div>
+    </>
   );
 }

@@ -1,7 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserIdFromToken } from '../../../utility.js';
+import Button from '../Button/Button.jsx'
 import './LinkButton.scss';
+
 
 export default function LinkButton({ formId }) {
   const navigate = useNavigate();
@@ -22,8 +24,6 @@ export default function LinkButton({ formId }) {
   };
 
   return (
-    <button className="btn--link" onClick={handleCopyLink}>
-      Copy Link
-    </button>
+    <Button  text="Copy Link" className="btn--link" onClick={handleCopyLink}/>
   );
 }

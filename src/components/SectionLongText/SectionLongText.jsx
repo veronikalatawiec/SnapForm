@@ -13,7 +13,7 @@ export default function SectionLongText({ onChange }) {
     <div className='long-text'>
       <input
         type="text"
-        placeholder="Add a label"
+        placeholder="What would you like to ask?"
         value={label}
         onChange={handleLabelChange}
         required

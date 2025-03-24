@@ -1,0 +1,75 @@
+@use "../../styles/partials/fonts";
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.builder {
+
+    &__name {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    &__label {
+      @include type-body(400);
+      color: $primary-black;
+    }
+    &__input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid $primary-black;
+      border-radius: 50rem;
+      background-color: $primary-white;
+      color: $secondary-grey;
+      transition: ease-in-out 0.25s;
+      @include type-small(400);
+      box-sizing: border-box;
+      &:hover {
+        box-shadow: 0.125rem 0.125rem 0.375rem rgba(0, 0, 0, 0.1);
+        background-color: $secondary-purple;
+      }
+      &:focus {
+        outline: none;
+        border-color: $secondary-blue;
+        background-color: $primary-light;
+      }
+      &::placeholder {
+        color: $secondary-grey;
+      }
+      &--large{
+        border-radius: .75rem;
+      }
+    }
+    &__form{
+        display: flex;
+        flex-direction: column;
+
+    }
+    &__section {
+      background-color: $primary-light;
+      padding: 1rem;
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+      position:relative;
+      @include tablet{
+        padding: 2.5rem;
+      }
+    }
+    &__add-sections {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+  }
+  
+  
+  
+  
+  
+  

@@ -9,7 +9,7 @@ import Arrow from '../../assets/images/icon_arrow-right.svg'
 export default function LandingPage(){
   return (
     <div className="landing">
-        <Nav />
+        <Nav type="landing"/>
         <div className="landing__hero">
             <h1 className="landing__head">
                 User feedback in a Snap
