@@ -44,19 +44,27 @@ For creators, freelancers, entrepreneurs, and small business owners, user feedba
 
 ## Features
 
+-   As a user, I want to be learn about SnapForm before creating an account.
+-   
 -   As a user, I want to be able to easily create an account, so I can start making forms.
     
 -   As a user, I want to be able to login to my account, to create and manage my forms.
     
 -   As a user, I want to access the platform on mobile devices, so I can manage forms and responses while on the go.
     
--   As a logged in user, I want to create a simple form quickly, so I can start collecting feedback without wasting time.
+-   As a logged in user, I want to create a form, so I can start collecting feedback.
+	-  As a logged in user, I want to add headers and paragraphs to forms to better inform responders.
+	-  As a logged in user, I want to add long and short text input questions to my form.
+	-  As a logged in user, I want to add multiple choice questions.
+ 	-  As a logged in user, I want to add checkbox questions.
     
 -   As a logged in user, I want to easily launch/share my form with others via a link, so I can collect responses quickly and efficiently.
 
 -   As a logged in user, I want to be able to take down/private my existing form at any point, so I can stop receiving responses .
     
--   As a logged in user, I want to customize my form's design, so it aligns with my brand or preferences without complexity.
+-   As a logged in user, I want to be able to delete a form I am no longer using.
+
+-   As a logged in user, I want to be able to view the responses for a specific form.
 
 ## Implementation
 
@@ -81,9 +89,6 @@ For creators, freelancers, entrepreneurs, and small business owners, user feedba
 
    - jwt-decode
    
-   - Pragmatic Drag-and-Drop
-   
-  -  React-colorful
 
 #### Server Libraries
 
@@ -101,6 +106,8 @@ There is currently no plan to link Snap Form to an external API.
 
 ### Sitemap
 
+-   Landing Page
+
 -   Sign up
     
 -   Sign In
@@ -109,17 +116,12 @@ There is currently no plan to link Snap Form to an external API.
     
 	-   Form Create
     
-	-   Form Edit
-    
 	-   Form Responses
-- Hosted/Active Form
- 
- - *IF TIME form completion  
-- *IF TIME form analytics
-- *IF TIME Promo (Page before signin portal to describe product)
-- *IF TIME Forgot Password
-- *IF TIME User Settings
 
+- Hosted/Active Form
+
+- Thank you For Submitting Page
+ 
 ### Mockups
 
 ![low-fi-wireframes](https://github.com/user-attachments/assets/e8a61870-4e4d-48bb-8ac7-11a77bb9085f)
@@ -129,145 +131,218 @@ There is currently no plan to link Snap Form to an external API.
 <img width="1321" alt="sql-diagram" src="https://github.com/user-attachments/assets/171b09b0-9227-4e0a-b86c-a7df7e2e009c" />
 
 
-### Endpoints
+# API Endpoints
 
-**POST /users**
+## POST /users
 
--   Creates a new user and returns the authentication token.  
+**Description:**  
+Creates a new user and returns the authentication token.
 
-    **Parameters**
-	-   email: User’s email as a string
-	-   password: User’s password as a string  
+**Parameters:**  
+- **email**: User’s email as a string  
+- **password**: User’s password as a string  
 
- **Response**
+**Response:**
+```
 {
-    "token": "seyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6I..."
+  "message": "Successfully created user",
+  "token": "seyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
-**POST /users/login**
+```
+## POST /users/login
 
--   Authenticates a user sign in and returns the JWT for other requests
+**Description:**  
+Authenticates a user sign in and returns the JWT for other requests.
 
-    **Parameters**
-	-   email: User’s email as a string
-	-   password: User’s password as a string  
+**Parameters:**  
+- **email**: User’s email as a string  
+- **password**: User’s password as a string  
 
- **Response**
+**Response:**
+```
 {
-    "token": "seyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6I..."
+  "message": "Successfully signed in",
+  "token": "seyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
-**POST /:user_id/forms**
+```
+## GET /:user_id/forms
 
--   Creates a new form associated with that user
+**Description:**  
+Retrieves all forms created by the logged in user.
 
-    **Parameters**
-	-   Authentication token
-	- name: Of form as a string
-	-   status: Forms "active" state as boolean  
-	-  sections: form content, as array of objects
-	- design: design aspects, as an object(or array of objects)
+**Parameters:**  
+- **Authentication token**: (in header)  
+- **user_id**: User’s ID as an integer  
 
-	 **Response**
-	- Success message
-	- Id of new form
-	{ "form_id": 1 }
+**Response:**
+```
+[
+  {
+    "form_id": 1,
+    "name": "Customer Feedback",
+    "status": true,
+    "design_object": { "theme": "default" },
+    "total_responses": 10,
+    "created": "2025-01-01T12:00:00Z",
+    "updated": "2025-01-02T12:00:00Z",
+    "sections": [
+      { "type": "text", "label": "What did you like about the product?", "options": null },
+      { "type": "radio", "label": "Would you recommend this product?", "options": ["Yes", "No"] }
+    ]
+  },
+  { ... }
+]
+```
+## GET /:user_id/forms/:id
 
-**PUT /:user_id/forms/:id**
+**Description:**  
+Retrieves details of a specific form for the logged in user.
 
--   Updates an existing form associated with that user
+**Parameters:**  
+- **Authentication token**: (in header)  
+- **user_id**: User’s ID as an integer  
+- **id**: Form’s ID as an integer  
 
-    **Parameters**
-	-   Authentication token
-	- id: Of form as an integer
-	- name: of form, as string
-	-   status: Forms "active" state as boolean  
-	-  sections: form content, as array of objects
-	- design: updated design aspects, as an object
-
-	 **Response**
-	- Success message
-	- Updated form object
-	{ "form_id": 1, "name": "Customer Feedback", "sections": [ { "type": "text", "label": "What did you like about the product?" }, { "type": "radio", "label": "Would you recommend this product?", "options": ["Yes", "No"] } ] }
-
-**GET /:user_id/forms**
-
--   Get all created forms of a logged in user
-
-    **Parameters**
-	-   Authentication token
-
-	 **Response**
-	- Array of form objects
-[{ "form_id": 1, "name": "Customer Feedback", "sections": [ { "type": "text", "label": "What did you like about the product?" }, { "type": "radio", "label": "Would you recommend this product?", "options": ["Yes", "No"] } ] },{}]
-
-**GET /:user_id/forms/:id**
-
--   Get details of a specific form for the logged in user
-
-    **Parameters**
-	-   Id: of form, as int
-	-   Authentication token
-
-	 **Response**
-	- form(object)
-{ "form_id": 1, "name": "Customer Feedback", "sections": [ { "type": "text", "label": "What did you like about the product?" }, { "type": "radio", "label": "Would you recommend this product?", "options": ["Yes", "No"] } ] }
-
-**GET /:user_id/forms/:id/responses**
-
--   Get the responses of a specific form for the logged in user
-
-    **Parameters**
-	-   Authentication token
-	- Id: of form, as int
-
-	 **Response**
-	- form responses object
-{ "form_id": 1, "section_1": "Yes", "section_2": "yes",}
-
-**POST /forms/public_id**
-
--   Posts a response for a public form
-
-    **Parameters**
-	-   public_id: Unique identifier for the public form (provided when the form is created).
-	-   sections: Array of objects containing answers for the form sections.
-		-   Each object in sections contains:
-			-   id: The form section ID.
-			-   answer: The user's response.
-
-	 **Response**
-	- Success message
-	{
-  "message": "Responses successfully submitted"
-}
-
-**GET /forms/public_id**
-
--   Get the details of a specific form for public access (anyone with the link can access).
-
-    **Parameters**
-	-   public_id: Unique identifier for the public form (provided when the form is created).
-
-	 **Response**
-	- form object
+**Response:**
+```
 {
-  "form_id": 1,
-  "name": "Customer Feedback",
-  "status": true,
-  "design_object": {"theme": "dark"},
+  "form": {
+    "form_id": 1,
+    "name": "Customer Feedback",
+    "status": true,
+    "design_object": { "theme": "default" },
+    "total_responses": 10,
+    "created": "2025-01-01T12:00:00Z",
+    "updated": "2025-01-02T12:00:00Z"
+  },
   "sections": [
-    {
-      "form_section_id": 1,
-      "type": "text",
-      "label": "What did you like about the product?"
-    },
-    {
-      "form_section_id": 2,
-      "type": "radio",
-      "label": "Would you recommend this product?",
-      "options": ["Yes", "No"]
-    }
+    { "type": "text", "label": "What did you like about the product?", "options": null },
+    { "type": "radio", "label": "Would you recommend this product?", "options": ["Yes", "No"] }
   ]
 }
+```
+## GET /forms/live/:user_id/:id
+
+**Description:**  
+Retrieves a live version of a specific form for public access by the logged in user.
+
+**Parameters:**  
+- **user_id**: User’s ID as an integer  
+- **id**: Form’s ID as an integer  
+
+**Response:**
+```json
+{
+  "form": {
+    "form_id": 1,
+    "name": "Customer Feedback",
+    "status": true
+  },
+  "sections": [
+    { "type": "text", "label": "What did you like about the product?", "options": null, "id": 1 },
+    { "type": "radio", "label": "Would you recommend this product?", "options": ["Yes", "No"], "id": 2 }
+  ]
+}
+```
+## POST /:user_id/forms
+
+**Description:**  
+Creates a new form associated with the user.
+
+**Parameters:**  
+- **Authentication token**: (in header)  
+- **name**: Name of the form as a string  
+- **status**: Form’s "active" state as a boolean  
+- **sections**: Array of form section objects  
+- **design_object**: Design aspects as an object  
+
+**Response:**
+```
+{ "form_id": 1 }
+```
+## PUT /:user_id/forms/:id
+
+**Description:**  
+Updates an existing form associated with the user.
+
+**Parameters:**  
+- **Authentication token**: (in header)  
+- **id**: Form’s ID as an integer  
+- **name**: Name of the form as a string  
+- **status**: Form’s "active" state as a boolean  
+- **sections**: Array of form section objects  
+- **design_object**: Updated design aspects as an object  
+
+**Response:**
+```
+{
+  "message": "Form successfully updated",
+  "form_id": 1,
+  "form": { ...updated form object... }
+}
+```
+## DELETE /:user_id/forms/:id
+
+**Description:**  
+Deletes an existing form associated with the user.
+
+**Parameters:**  
+- **Authentication token**: (in header)  
+- **id**: Form’s ID as an integer  
+
+**Response:**
+```json
+{ "message": "Form deleted successfully" }
+```
+## GET /forms/response/:user_id/:id
+
+**Description:**  
+Retrieves the responses for a specific form for the logged in user.
+
+**Parameters:**  
+- **Authentication token**: (in header)  
+- **user_id**: User’s ID as an integer  
+- **id**: Form’s ID as an integer  
+
+**Response:**
+```json
+{
+  "totalResponses": 5,
+  "responses": [
+    {
+      "form_id": 1,
+      "form_section_id": 2,
+      "content": "User response here"
+    },
+    { ... }
+  ]
+}
+```
+## POST /forms/response/:user_id/:id
+
+**Description:**  
+Submits responses for a public form.
+
+**Parameters:**  
+- **In the request body:**  
+  - **responses**: An array of objects where each object contains:  
+    - **form_section_id**: Form section ID as an integer  
+    - **content**: User's response as a string  
+
+**Response:**
+```json
+{
+  "message": "Responses submitted successfully",
+  "responses": [
+    {
+      "form_section_id": 1,
+      "content": "Answer 1",
+      "created": "2025-01-01T12:00:00Z"
+    },
+    { ... }
+  ]
+}
+```
 
 ## Roadmap
 (Perhaps an optimistic one)
@@ -359,7 +434,9 @@ There is currently no plan to link Snap Form to an external API.
 
 ## Future Implementations
 
--  As a logged in user, I want to view visual analytics on launched forms, so I can easily understand feedback and make data-driven decisions.
+-  Form Editing
+-  Form Analytics
+-  Modernize site layout/UI
 -  Form Templates for a quick start (3-5 initially?)
 -  Individual response detailed view
     
